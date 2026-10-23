@@ -5,8 +5,8 @@ import prisma from "@/lib/prisma/prisma";
 import crypto from "crypto";
 
 const registerSchema = z.object({
-  login: z.string().min(3, "Nazwa użytkownika musi być dłuższa niż 3 znaki").max(100),
-  password: z.string().min(6, "Hasło musi być dłuższe niż 6 znaków").max(100),
+  login: z.string().min(3, "Nazwa użytkownika musi być dłuższa niż 3 znaki").max(100, "Nazwa użytkownika nie może być dłuższa niż 100 znaków"),
+  password: z.string().min(6, "Hasło musi być dłuższe niż 6 znaków").max(100, "Hasło nie może być dłuższe niż 100 znaków"),
 });
 
 export async function POST(req: NextRequest) {

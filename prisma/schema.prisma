@@ -15,6 +15,7 @@ model users {
   password_hash   String
   salt            String
   active_sessions active_sessions[]
+  communities     communities[]
 }
 
 /// This model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info.
@@ -22,4 +23,14 @@ model active_sessions {
   session_id String @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
   user_id    String @default(dbgenerated("gen_random_uuid()")) @db.Uuid
   users      users  @relation(fields: [user_id], references: [id], onDelete: Cascade, map: "active_sessions_userID_fkey")
+}
+
+/// This model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info.
+model communities {
+  id          String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  created_at  DateTime @default(now()) @db.Timestamptz(6)
+  owner_id    String   @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  name        String   @unique
+  description String?
+  users       users    @relation(fields: [owner_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
 }

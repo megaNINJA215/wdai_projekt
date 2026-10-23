@@ -1,10 +1,12 @@
 import { getCurrentUser } from "@/lib/auth/currentUser";
 import { authPermissions } from "./auth";
 import { usersPermissions } from "./users";
+import { communitiesPermissions } from "./communities";
 
 const handlers = {
   ...authPermissions,
-  ...usersPermissions
+  ...usersPermissions,
+  ...communitiesPermissions,
 };
 
 export async function can(

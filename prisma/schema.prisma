@@ -32,5 +32,6 @@ model communities {
   owner_id    String   @default(dbgenerated("gen_random_uuid()")) @db.Uuid
   name        String   @unique
   description String?
+  owner_name  String
   users       users    @relation(fields: [owner_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
 }

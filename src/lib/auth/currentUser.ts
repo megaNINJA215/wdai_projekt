@@ -18,11 +18,16 @@ export const getCurrentUser = cache(
       },
       select: {
         user_id: true,
+        users: {
+          select: {
+            username: true,
+          },
+        },
       },
-    }))?.user_id;
+    }));
 
     if (!userID) return null;
 
-    return { id: userID };
+    return { id: userID.user_id, username: userID.users.username };
   }
 );

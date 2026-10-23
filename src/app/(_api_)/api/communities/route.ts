@@ -55,10 +55,25 @@ export async function POST(req: NextRequest) {
     );
   }
 
+  const currentUser = await getCurrentUser();
+
+  if (!currentUser) {
+    return NextResponse.json(
+      {
+        error: {
+          code: "INTERNAL_SERVER_ERROR",
+          message: "To nie powinno się zdarzyć.",
+        },
+      },
+      { status: 500 },
+    );
+  }
+
   await prisma.communities.create({
     data: {
       name: data.data.communityName,
-      owner_id: (await getCurrentUser())?.id,
+      owner_id: currentUser.id,
+      owner_name: currentUser.username,
     },
   });
 

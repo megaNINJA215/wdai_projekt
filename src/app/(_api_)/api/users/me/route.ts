@@ -17,8 +17,8 @@ export async function GET() {
 
   }
 
-  const userID = await getCurrentUser();
-  if (!userID) {
+  const currentUser = await getCurrentUser();
+  if (!currentUser) {
     return NextResponse.json(
       {
         isLoggedIn: false,
@@ -30,7 +30,7 @@ export async function GET() {
 
   const user = await prisma.users.findUnique({
     where: {
-      id: userID?.id,
+      id: currentUser?.id,
     },
     select: {
       id: true,

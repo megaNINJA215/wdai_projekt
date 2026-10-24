@@ -69,10 +69,17 @@ export async function POST(req: NextRequest) {
     );
   }
 
-  await prisma.communities.create({
+  const community = await prisma.communities.create({
     data: {
       name: data.data.communityName,
       owner_id: currentUser.id,
+    },
+  });
+
+  await prisma.community_memberships.create({
+    data: {
+      user_id: currentUser.id,
+      community_id: community.id,
     },
   });
 

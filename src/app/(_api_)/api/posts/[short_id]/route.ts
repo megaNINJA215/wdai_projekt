@@ -1,9 +1,9 @@
-import { NextResponse } from "next/server";
+import { NextResponse, NextRequest } from "next/server";
 import { can } from "@/utils/permissions";
 import prisma from "@/lib/prisma/prisma";
 import z from "zod";
 
-export async function GET(_req: Request, { params }: { params: Promise<{ short_id: string }> }) {
+export async function GET(_req: NextRequest, { params }: { params: Promise<{ short_id: string }> }) {
   if (!await can("posts:read")) {
     return NextResponse.json(
       {
@@ -74,7 +74,7 @@ const editPostSchema = z.object({
   content: z.string().min(1, "Treść posta nie może być pusta").max(1000, "Treść posta nie może być dłuższa niż 1000 znaków").optional(),
 });
 
-export async function PATCH(req: Request, { params }: { params: Promise<{ short_id: string }> }) {
+export async function PATCH(req: NextRequest, { params }: { params: Promise<{ short_id: string }> }) {
   const { short_id } = await params;
 
   if (!await can("posts:edit", { short_id })) {

@@ -1,8 +1,8 @@
-import { NextResponse } from "next/server";
+import { NextResponse, NextRequest } from "next/server";
 import { can } from "@/utils/permissions";
 import prisma from "@/lib/prisma/prisma";
 
-export async function GET(_req: Request, { params }: { params: Promise<{ username: string }> }) {
+export async function GET(_req: NextRequest, { params }: { params: Promise<{ username: string }> }) {
 
   if (!await can("users:getInfo")) {
     return NextResponse.json(

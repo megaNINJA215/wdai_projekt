@@ -1,9 +1,9 @@
-import { NextResponse } from "next/server";
+import { NextResponse, NextRequest } from "next/server";
 import { can } from "@/utils/permissions";
 import prisma from "@/lib/prisma/prisma";
 import { z } from "zod";
 
-export async function GET(_req: Request, { params }: { params: Promise<{ name: string }> }) {
+export async function GET(_req: NextRequest, { params }: { params: Promise<{ name: string }> }) {
   if (!await can("communities:about")) {
     return NextResponse.json(
       {
@@ -65,7 +65,7 @@ const communityPatchSchema = z.object({
   description: z.string().max(1000, "Opis nie może być dłuższy niż 1000 znaków").nullable(),
 });
 
-export async function PATCH(req: Request, { params }: { params: Promise<{ name: string }> }) {
+export async function PATCH(req: NextRequest, { params }: { params: Promise<{ name: string }> }) {
   const { name: communityName } = await params;
 
   if (!await can("communities:edit", { communityName })) {

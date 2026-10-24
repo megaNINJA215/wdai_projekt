@@ -1,9 +1,9 @@
-import { NextResponse } from "next/server";
+import { NextResponse, NextRequest } from "next/server";
 import { can } from "@/utils/permissions";
 import prisma from "@/lib/prisma/prisma";
 import { getCurrentUser } from "@/lib/auth/currentUser";
 
-export async function POST(_req: Request, { params }: { params: Promise<{ name: string }> }) {
+export async function POST(_req: NextRequest, { params }: { params: Promise<{ name: string }> }) {
   const { name: communityName } = await params;
 
   if (!await can("communities:membership:join", { communityName })) {
@@ -88,8 +88,7 @@ export async function POST(_req: Request, { params }: { params: Promise<{ name: 
   );
 }
 
-
-export async function DELETE(req: Request, { params }: { params: Promise<{ name: string }> }) {
+export async function DELETE(req: NextRequest, { params }: { params: Promise<{ name: string }> }) {
   const { name: communityName } = await params;
 
   if (!await can("communities:membership:quit", { communityName })) {
@@ -137,7 +136,7 @@ export async function DELETE(req: Request, { params }: { params: Promise<{ name:
 
 
 export async function GET(
-  request: Request,
+  req: NextRequest,
   { params }: { params: Promise<{ name: string }> },
 ) {
   const PAGE_SIZE = 30;
@@ -157,7 +156,7 @@ export async function GET(
     );
   }
 
-  const searchParams = new URL(request.url).searchParams;
+  const searchParams = new URL(req.url).searchParams;
   const rawPage = searchParams.get("page");
   const page = rawPage === null ? 0 : Number(rawPage);
 

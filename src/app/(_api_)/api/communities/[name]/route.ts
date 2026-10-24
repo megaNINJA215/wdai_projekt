@@ -27,7 +27,11 @@ export async function GET(_req: Request, { params }: { params: Promise<{ name: s
       name: true,
       created_at: true,
       description: true,
-      owner_name: true,
+      users: {
+        select: {
+          username: true,
+        },
+      }
     },
   });
 
@@ -42,10 +46,16 @@ export async function GET(_req: Request, { params }: { params: Promise<{ name: s
       { status: 404 },
     );
   }
+  const { users, ...rest } = community;
+
+  const formattedCommunity = {
+    ...rest,
+    owner_name: users.username,
+  };
 
   return NextResponse.json(
     {
-      data: community,
+      data: formattedCommunity,
     },
     { status: 200 },
   );

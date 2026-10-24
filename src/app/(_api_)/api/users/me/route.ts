@@ -44,7 +44,7 @@ export async function GET() {
       {
         error: {
           code: "INTERNAL_SERVER_ERROR",
-          message: "Błąd bazy danych",
+          message: "Użytkownik został usunięty z bazy danych",
         },
       },
       { status: 500 },

@@ -25,7 +25,7 @@ export async function POST() {
       {
         error: {
           code: "INTERNAL_SERVER_ERROR",
-          message: "Jednocześnie jesteś zalogowany i nie masz sesji. To nie powinno się zdarzyć.",
+          message: "To nie powinno się zdarzyć.",
         },
       },
       { status: 500 },

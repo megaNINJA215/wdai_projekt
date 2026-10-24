@@ -16,6 +16,7 @@ model users {
   salt            String
   active_sessions active_sessions[]
   communities     communities[]
+  posts           posts[]
 }
 
 /// This model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info.
@@ -32,6 +33,20 @@ model communities {
   owner_id    String   @default(dbgenerated("gen_random_uuid()")) @db.Uuid
   name        String   @unique
   description String?
-  owner_name  String
   users       users    @relation(fields: [owner_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  posts       posts[]
+}
+
+/// This model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info.
+model posts {
+  id           String       @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  created_at   DateTime     @default(now()) @db.Timestamptz(6)
+  author_id    String       @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  community_id String?      @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  title        String
+  content      String
+  edited_at    DateTime?    @db.Timestamptz(6)
+  short_id     String       @unique
+  users        users        @relation(fields: [author_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  communities  communities? @relation(fields: [community_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
 }

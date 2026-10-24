@@ -73,7 +73,6 @@ export async function POST(req: NextRequest) {
     data: {
       name: data.data.communityName,
       owner_id: currentUser.id,
-      owner_name: currentUser.username,
     },
   });
 

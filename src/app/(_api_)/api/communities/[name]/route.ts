@@ -67,6 +67,19 @@ const communityPatchSchema = z.object({
 
 export async function PATCH(req: Request, { params }: { params: Promise<{ name: string }> }) {
   const { name: communityName } = await params;
+
+  if (!await can("communities:edit", { communityName })) {
+    return NextResponse.json(
+      {
+        error: {
+          code: "UNAUTHORIZED",
+          message: "Brak uprawnień do edycji tej społeczności.",
+        },
+      },
+      { status: 401 },
+    );
+  }
+
   const data = communityPatchSchema.safeParse(await req.json());
 
   if (!data.success) {

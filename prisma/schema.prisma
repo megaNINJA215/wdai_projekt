@@ -9,14 +9,15 @@ datasource db {
 
 /// This model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info.
 model users {
-  id              String            @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  created_at      DateTime          @default(now()) @db.Timestamptz(6)
-  username        String            @unique
-  password_hash   String
-  salt            String
-  active_sessions active_sessions[]
-  communities     communities[]
-  posts           posts[]
+  id                    String                  @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  created_at            DateTime                @default(now()) @db.Timestamptz(6)
+  username              String                  @unique
+  password_hash         String
+  salt                  String
+  active_sessions       active_sessions[]
+  communities           communities[]
+  community_memberships community_memberships[]
+  posts                 posts[]
 }
 
 /// This model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info.
@@ -28,13 +29,14 @@ model active_sessions {
 
 /// This model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info.
 model communities {
-  id          String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  created_at  DateTime @default(now()) @db.Timestamptz(6)
-  owner_id    String   @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  name        String   @unique
-  description String?
-  users       users    @relation(fields: [owner_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
-  posts       posts[]
+  id                    String                  @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  created_at            DateTime                @default(now()) @db.Timestamptz(6)
+  owner_id              String                  @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  name                  String                  @unique
+  description           String?
+  users                 users                   @relation(fields: [owner_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  community_memberships community_memberships[]
+  posts                 posts[]
 }
 
 /// This model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info.
@@ -49,4 +51,15 @@ model posts {
   short_id     String       @unique
   users        users        @relation(fields: [author_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
   communities  communities? @relation(fields: [community_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+}
+
+/// This model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info.
+model community_memberships {
+  user_id      String      @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  joined_at    DateTime    @default(now()) @db.Timestamptz(6)
+  community_id String      @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  communities  communities @relation(fields: [community_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  users        users       @relation(fields: [user_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+
+  @@id([user_id, community_id])
 }

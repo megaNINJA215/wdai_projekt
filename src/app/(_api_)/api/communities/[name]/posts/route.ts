@@ -139,9 +139,7 @@ export async function GET(req: NextRequest, { params }: { params: Promise<{ name
 
   const rows = await prisma.posts.findMany({
     where: {
-      communities: {
-        name: communityName,
-      },
+      community_id: community_id.id,
     },
 
     orderBy: [

@@ -3,12 +3,14 @@ import { authPermissions } from "./auth";
 import { usersPermissions } from "./users";
 import { communitiesPermissions } from "./communities";
 import { postsPermissions } from "./posts";
+import { searchPermissions } from "./search";
 
 const handlers = {
   ...authPermissions,
   ...usersPermissions,
   ...communitiesPermissions,
   ...postsPermissions,
+  ...searchPermissions,
 };
 
 export async function can(

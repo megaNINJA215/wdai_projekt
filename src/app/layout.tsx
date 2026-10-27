@@ -7,7 +7,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
     <html lang="pl">
       <body>
         <ClientProviders>
-          <div className="bg-bg-dark text-text flex min-h-screen">
+          <div className="bg-bg text-text flex min-h-screen">
             {children}
           </div>
         </ClientProviders>

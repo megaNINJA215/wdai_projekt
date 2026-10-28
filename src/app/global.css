@@ -4,13 +4,14 @@
 	--color-bg: hsl(80, 5%, 10%);
 	--color-fg: hsl(100, 5%, 25%);
 	--color-fg-hover: hsl(100, 5%, 30%);
-	--color-fg-muted: hsl(100, 5%, 15%);
+	--color-fg-muted: hsl(100, 5%, 20%);
 
 	--color-text: hsl(195 0% 100%);
 	--color-text-muted: hsl(190 25% 65%);
+	--color-text-secondary: hsl(100, 0%, 65%);
 
-	--color-border: hsl(195 20% 50%);
-	--color-border-hover: hsl(190 100% 20%);
+	--color-border: hsl(190 100% 20%);
+	--color-border-hover: hsl(195 20% 50%);
 	--color-border-muted: hsl(195, 20%, 40%);
 
 	--color-primary: hsl(180 30% 50%);

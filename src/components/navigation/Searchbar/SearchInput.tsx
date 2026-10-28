@@ -1,3 +1,4 @@
+import { redirect } from 'next/navigation';
 import React from 'react';
 
 export interface SearchInputProps {
@@ -5,19 +6,15 @@ export interface SearchInputProps {
   onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
   value: string;
   ref: React.RefObject<HTMLInputElement | null>;
-  onFocus?: (event: React.FocusEvent<HTMLInputElement>) => void;
+  onFocus: (event: React.FocusEvent<HTMLInputElement>) => void;
+  onSearch: () => void;
 }
 
 export default function SearchInput(props: SearchInputProps) {
-  const search = () => {
-    if (props.value.trim().length > 0) {
-      window.location.href = `/search?query=${encodeURIComponent(props.value)}`;
-    }
-  }
 
   const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
     if (event.key === "Enter") {
-      search();
+      props.onSearch();
     }
   };
 
@@ -36,7 +33,7 @@ export default function SearchInput(props: SearchInputProps) {
 
       <button
         type="button"
-        onClick={search}
+        onClick={props.onSearch}
         className="h-7 shrink-0 bg-primary rounded-full w-7 text-md flex items-center justify-center hover:bg-primary-hover mr-1.5"
         aria-label="Szukaj"
       >

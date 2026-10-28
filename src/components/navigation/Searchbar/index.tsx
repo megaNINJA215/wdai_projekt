@@ -1,17 +1,12 @@
 "use client";
 
+import { redirect } from "next/navigation";
 import SearchAutocomplete from "./SearchAutocomplete";
 import SearchInput from "./SearchInput";
-
 import { useEffect, useRef, useState } from "react";
 
-export interface SearchbarProps {
-  defaultValue?: string;
-}
-
-
-export default function Searchbar(props: SearchbarProps) {
-  const [searchValue, setSearchValue] = useState(props.defaultValue || "");
+export default function Searchbar() {
+  const [searchValue, setSearchValue] = useState("");
   const [showAutocomplete, setShowAutocomplete] = useState(false);
 
   const inputRef = useRef<HTMLInputElement>(null);
@@ -40,11 +35,17 @@ export default function Searchbar(props: SearchbarProps) {
         label="Szukaj..."
         onChange={(e) => {
           setSearchValue(e.target.value);
-          setShowAutocomplete(e.target.value.length > 0)
+          setShowAutocomplete(e.target.value.length > 0);
         }}
         value={searchValue}
         ref={inputRef}
         onFocus={() => setShowAutocomplete(searchValue.length > 0)}
+        onSearch={() => {
+          if (searchValue.trim().length > 0) {
+            setShowAutocomplete(false);
+            redirect(`/search?query=${encodeURIComponent(searchValue)}`);
+          }
+        }}
       />
       {searchValue.length > 0 && <SearchAutocomplete
         setSearchValue={setSearchValue}

@@ -9,6 +9,8 @@
 	--color-text: hsl(195 0% 100%);
 	--color-text-muted: hsl(190 25% 65%);
 	--color-text-secondary: hsl(100, 0%, 65%);
+	--color-text-dark: hsl(0 0% 0%);
+	--color-text-dark-muted: hsl(0 0% 40%);
 
 	--color-border: hsl(190 100% 20%);
 	--color-border-hover: hsl(195 20% 50%);

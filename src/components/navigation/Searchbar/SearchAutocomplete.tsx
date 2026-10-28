@@ -1,7 +1,7 @@
 import { cn } from '@/utils/cn';
 import { useQuery, keepPreviousData } from '@tanstack/react-query';
 import React, { useEffect, useState } from 'react';
-import ProfilePicture from '../ui/ProfilePicture';
+import ProfilePicture from '../../ui/ProfilePicture';
 import Link from "next/link";
 
 export interface SearchAutocompleteProps {

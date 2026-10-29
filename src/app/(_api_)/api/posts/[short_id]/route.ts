@@ -71,7 +71,7 @@ export async function GET(_req: NextRequest, { params }: { params: Promise<{ sho
 
 const editPostSchema = z.object({
   title: z.string().min(3, "Tytuł posta musi być dłuższy niż 3 znaki").max(100, "Tytuł posta nie może być dłuższy niż 100 znaków").optional(),
-  content: z.string().min(1, "Treść posta nie może być pusta").max(1000, "Treść posta nie może być dłuższa niż 1000 znaków").optional(),
+  content: z.string().min(1, "Treść posta nie może być pusta").max(8000, "Treść posta nie może być dłuższa niż 8000 znaków").optional(),
 });
 
 export async function PATCH(req: NextRequest, { params }: { params: Promise<{ short_id: string }> }) {

@@ -7,7 +7,7 @@ import { shortID } from "@/utils/short_id";
 
 const createPostSchema = z.object({
   title: z.string().min(3, "Tytuł posta musi być dłuższy niż 3 znaki").max(100, "Tytuł posta nie może być dłuższy niż 100 znaków"),
-  content: z.string().min(1, "Treść posta nie może być pusta").max(1000, "Treść posta nie może być dłuższa niż 1000 znaków"),
+  content: z.string().min(1, "Treść posta nie może być pusta").max(8000, "Treść posta nie może być dłuższa niż 8000 znaków"),
 });
 
 export async function POST(req: NextRequest, { params }: { params: Promise<{ name: string }> }) {

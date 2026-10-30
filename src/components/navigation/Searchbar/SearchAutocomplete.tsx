@@ -9,6 +9,7 @@ export interface SearchAutocompleteProps {
   query: string;
   ref: React.RefObject<HTMLInputElement | null>;
   show: boolean;
+  setShow: (value: boolean) => void;
 }
 
 export default function SearchAutocomplete(props: SearchAutocompleteProps) {
@@ -63,6 +64,7 @@ export default function SearchAutocomplete(props: SearchAutocompleteProps) {
               </p>
               {autocompleteData.data.communities.map((community) => (
                 <Link
+                  onClick={() => props.setShow(false)}
                   href={`/c/${community.name}`}
                   key={community.name}
                   className="cursor-pointer hover:bg-fg-hover p-2 px-4 rounded-2xl flex flex-row items-center"
@@ -86,6 +88,7 @@ export default function SearchAutocomplete(props: SearchAutocompleteProps) {
               </p>
               {autocompleteData.data.users.map((user) => (
                 <Link
+                  onClick={() => props.setShow(false)}
                   key={user.username}
                   href={`/u/${user.username}`}
                   className="cursor-pointer hover:bg-fg-hover p-2 px-4 rounded-2xl flex flex-row"

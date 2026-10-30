@@ -52,6 +52,7 @@ export default function Searchbar() {
         query={searchValue}
         ref={dropDownRef}
         show={showAutocomplete}
+        setShow={setShowAutocomplete}
       />}
     </div>
   );

@@ -1,0 +1,1 @@
+export const PERSONALIZED_POSTS_QUERY_KEY = ["personalized-posts"];

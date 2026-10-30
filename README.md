@@ -23,7 +23,7 @@ na chwilę obecną zrobione jest:
     - możliwość tworzenia nowych postów z lub bez przypisanej społeczności
     - możliwość edytowania posta jeśli jest się jego autorem
     - możliwość pobierania postów danego użytkownika, z społeczności lub spersonalizowanych (czyli z społeczności do ktorych się należy), na chwilę obecną pobierają się tylko od najnowszych
-        - wyświetlanie postów wspiera infinity scroll, jeśli w danej społeczności znajduje się np. 500 postów ( c/test ) to chcąc je wyświetlić nie pobierzemy wszystkich naraz tylko 30 (w kolejności od najnowszego), po zjechaniu na dół strony gdzie znajduje się koniec listy tych 30 postów automatycznie zostanie pobrane kolejne 30 z nich i tak aż do wyświetlenia wszystkich dostępnych postów
+        - wyświetlanie postów wspiera infinity scroll, jeśli w danej społeczności znajduje się np. 100 postów ( c/test ) to chcąc je wyświetlić nie pobierzemy wszystkich naraz tylko 30 (w kolejności od najnowszego), po zjechaniu na dół strony gdzie znajduje się koniec listy tych 30 postów automatycznie zostanie pobrane kolejne 30 z nich i tak aż do wyświetlenia wszystkich dostępnych postów
     - możliwość formatowania tekstu wyświetlanego w postach, obejmuje to:
         - **pogrubienie tekstu**
         - _przechylenie tekstu_
@@ -45,6 +45,9 @@ na chwilę obecną zrobione jest:
     - [ ] sidebar (jest widoczny, brak zawartości)
 - [x] działający searchbar w headerze z podpowiedziami uzupełnienia
 - [x] responsywność, jak tworzę nowy komponent od razu zwracam uwagę na to jak będzie wyglądać zarówno na komputerze jak i na urządzeniach mobilnych
+- [x] wyświetlanie spersonalizowanych postów na głównej stronie
+    - losowe, najnowsze gdy jest się niezalogowanym
+    - z społeczności których jest się członkiem jeśli jest się zalogowanym
 
 na dniach będzie implementowane (kolejność losowa):
 
@@ -55,9 +58,6 @@ na dniach będzie implementowane (kolejność losowa):
     - możliwość stworzenia nowej społeczności
     - lista społeczności których jest się członkiem
     - lista "odkrywaj" kilku losowych społeczności których nie jest się członkiem
-- [ ] wyświetlanie spersonalizowanych postów na głównej stronie
-    - losowe, najnowsze gdy jest się niezalogowanym
-    - z społeczności których jest się członkiem jeśli jest się zalogowanym
 - [ ] wyświetlanie społeczności
     - wyświetlanie podstawowych informacji o społeczności jak np. nazwa, opis, liczba członków
     - wyświetlanie postów przypisanych do danej społeczności

@@ -51,7 +51,7 @@ export default function SearchAutocomplete(props: SearchAutocompleteProps) {
 
   return (
     <div className={cn(
-      "absolute top-11 w-7/10 rounded-3xl border-2 border-border bg-fg p-2 text-md text-text",
+      "absolute top-11 w-7/10 rounded-3xl border-4 border-border bg-fg p-2 text-md text-text",
       props.show ? "block" : "hidden"
     )} ref={props.ref}>
 

@@ -6,17 +6,10 @@ import { getRelativeTime } from '@/utils/formatRelativeTime';
 import { cn } from '@/utils/cn';
 import FormattedText from '../ui/FormattedText';
 import ProfilePicture from '../ui/ProfilePicture';
+import { Post as PostType } from '@/types/post';
 
 export interface PostProps {
-  post: {
-    short_id: string;
-    title: string;
-    content: string;
-    community: string;
-    author: string;
-    created_at: string;
-    edited_at?: string;
-  };
+  post: PostType;
   clampLines?: number;
 }
 
@@ -32,17 +25,29 @@ export default function Post(props: PostProps) {
         <div className="flex flex-row  items-end justify-between w-[calc(100%-2rem)] m-4">
 
           <div className="flex flex-row gap-2">
-            <Link href={`c/${post.community}`} className="z-5">
-              <ProfilePicture type="community" name={post.community} size={48} />
-            </Link>
-            <div className="flex flex-col whitespace-nowrap">
-              <Link href={`/c/${post.community}`} className="font-bold text-primary text-lg z-5">
-                c/{post.community}
+            {post.community && <>
+              <Link href={`c/${post.community}`} className="z-5">
+                <ProfilePicture type="community" name={post.community} size={48} />
               </Link>
-              <Link href={`/u/${post.author}`} className="text-sm text-text-secondary z-5">
-                u/{post.author}
+              <div className="flex flex-col whitespace-nowrap">
+                <Link href={`/c/${post.community}`} className="font-bold text-primary text-lg z-5">
+                  c/{post.community}
+                </Link>
+                <Link href={`/u/${post.author}`} className="text-sm text-text-secondary z-5">
+                  u/{post.author}
+                </Link>
+              </div>
+            </>}
+            {!post.community && <>
+              <Link href={`c/${post.community}`} className="z-5">
+                <ProfilePicture type="user" name={post.author} size={48} />
               </Link>
-            </div>
+              <div className="flex items-center whitespace-nowrap ">
+                <Link href={`/u/{post.author}`} className="font-bold text-primary text-lg z-5">
+                  u/{post.author}
+                </Link>
+              </div>
+            </>}
           </div>
 
           <div className="flex-col text-end text-text-secondary flex line-clamp-1">

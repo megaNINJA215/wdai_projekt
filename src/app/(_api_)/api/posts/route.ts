@@ -78,20 +78,6 @@ export async function GET(req: NextRequest) {
     return NextResponse.json(
       {
         error: {
-          code: "FORBIDDEN",
-          message: "Będąc niezalogowanym, nie możesz mieć spersonalizowanych postów.",
-        },
-      },
-      { status: 403 },
-    );
-  }
-
-  const user = await getCurrentUser();
-
-  if (!user) {
-    return NextResponse.json(
-      {
-        error: {
           code: "INTERNAL_SERVER_ERROR",
           message: "To nie powinno się zdarzyć.",
         },
@@ -100,18 +86,22 @@ export async function GET(req: NextRequest) {
     );
   }
 
+  const user = await getCurrentUser();
+
   const searchParams = req.nextUrl.searchParams;
   const cursorId = searchParams.get("cursorId");
 
   const rows = await prisma.posts.findMany({
     where: {
-      communities: {
-        community_memberships: {
-          some: {
-            user_id: user.id,
+      ...(user && {
+        communities: {
+          community_memberships: {
+            some: {
+              user_id: user.id,
+            },
           },
         },
-      },
+      }),
     },
 
     orderBy: [

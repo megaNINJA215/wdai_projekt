@@ -1,4 +1,4 @@
-import { CurrentUser } from "@/lib/auth/types";
+import { CurrentUser } from "@/types/currentUser";
 
 export type PermissionContext = Record<string, unknown>;
 

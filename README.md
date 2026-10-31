@@ -48,6 +48,7 @@ na chwilę obecną zrobione jest:
 - [x] wyświetlanie spersonalizowanych postów na głównej stronie
     - losowe, najnowsze gdy jest się niezalogowanym
     - z społeczności których jest się członkiem jeśli jest się zalogowanym
+- [x] wyświetlanie konkretnego postu
 
 na dniach będzie implementowane (kolejność losowa):
 
@@ -82,5 +83,4 @@ na dniach będzie implementowane (kolejność losowa):
             - megaNINJA215
             - megaBONI215
             - od test_user_1 do test_user_100
-- [ ] wyświetlanie konkretnego postu
-    - możliwość edycji tytułu/opisu jeśli jest się jego autorem
+- [ ] możliwość edycji tytułu/opisu jeśli jest się jego autorem

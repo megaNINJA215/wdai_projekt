@@ -1,8 +1,8 @@
 "use client";
 
-import Post from "@/components/post";
+import PostPreview from "@/components/ui/post/PostPreview";
 import LoadingError from "@/components/ui/LoadingError";
-import LoadingInfo from "@/components/ui/LoadingInfo";
+import LoadingInfo from "@/components/ui/InfoText";
 import { useInfiniteQuery } from "@tanstack/react-query";
 import { useEffect, useRef } from "react";
 import { Post as PostType } from "@/types/post";
@@ -100,7 +100,7 @@ export default function Home() {
                 : null
             }
           >
-            <Post post={post} clampLines={10} />
+            <PostPreview post={post} clampLines={10} />
           </li>
         ))}
       </ul>

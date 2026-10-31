@@ -1,4 +1,4 @@
-export function getRelativeTime(date: string): string {
+export function getRelativeTime(date: Date): string {
   const now = new Date();
   const then = new Date(date);
 

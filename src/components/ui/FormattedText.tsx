@@ -10,7 +10,7 @@ export interface FormattedTextProps {
   defaultCodeLanguage?: string;
   style?: string;
   clampLines?: number;
-  setIsClamped: (value: React.SetStateAction<boolean>) => void
+  setIsClamped?: (value: React.SetStateAction<boolean>) => void
 }
 
 type TokenMatch = {
@@ -119,7 +119,7 @@ function getNextMatch(
       if (!isSafeHref(href)) return match[0];
 
       return (
-        <Link key={key} href={href} className="relative z-10 text-info hover:underline">
+        <Link key={key} href={href} className="relative z-10 text-info hover:underline" target={href.startsWith('http') ? '_blank' : undefined}>
           {label}
         </Link>
       );
@@ -199,13 +199,13 @@ export default function FormattedText({
     const element = textRef.current;
 
     if (!element || !clampLines) {
-      setIsClamped(false);
+      setIsClamped?.(false);
       return;
     }
 
     const checkClamp = () => {
       const clamped = element.scrollHeight > element.clientHeight + 1;
-      setIsClamped(clamped);
+      setIsClamped?.(clamped);
     };
 
     checkClamp();

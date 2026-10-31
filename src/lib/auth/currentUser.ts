@@ -1,7 +1,7 @@
 import 'server-only';
 
 import { cache } from 'react';
-import type { CurrentUser } from './types';
+import type { CurrentUser } from '@/types/currentUser';
 import { cookies } from 'next/headers';
 import prisma from '../prisma/prisma';
 

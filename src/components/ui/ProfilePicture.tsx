@@ -32,7 +32,6 @@ export default function ProfilePicture(props: ProfilePictureProps) {
         seed: props.name,
         size: props.size || 32,
         "borderRadius": 50,
-        "idRandomization": true,
       }).toDataUri();
     }, [props.name]);
 

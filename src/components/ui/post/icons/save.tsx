@@ -34,7 +34,7 @@ export default function Save(props: SaveProps) {
   {/* SVG wzięte z https://www.svgrepo.com/svg/356358/save oraz https://www.svgrepo.com/svg/356492/save */ }
   return saved ?
     <button
-      className="hover:cursor-pointer hover:bg-fg-hover rounded-full px-3 py-1"
+      className="hover:cursor-pointer hover:bg-fg-muted rounded-full px-3 py-1"
       onClick={handleSave}>
       <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="h-6 w-6">
         <g id="SVGRepo_bgCarrier" strokeWidth="0"></g>

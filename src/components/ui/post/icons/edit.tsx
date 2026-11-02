@@ -8,7 +8,7 @@ export default function Edit(props: EditProps) {
   {/* SVG wzięte z https://www.svgrepo.com/svg/510962/edit-pencil-line-01 */ }
   return (
     <button
-      className="hover:cursor-pointer hover:bg-fg-hover rounded-full px-2"
+      className="hover:cursor-pointer hover:bg-fg-muted rounded-full px-2"
       onClick={() => props.setIsEditing(true)}>
       <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="h-7 w-7 m-0.5">
         <g id="SVGRepo_bgCarrier" strokeWidth="0"></g>

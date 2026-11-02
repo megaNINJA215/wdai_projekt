@@ -3,7 +3,6 @@
 
 import { useEffect, useRef, useState } from "react";
 
-import InfoText from "@/components/ui/InfoText";
 import PostPreview from "@/components/ui/post/PostPreview";
 import { useInfiniteQuery } from "@tanstack/react-query";
 import { Post as PostType } from "@/types/post";
@@ -12,11 +11,11 @@ import { Community as CommunityType } from "@/types/community";
 import CommunityPreview from "@/components/ui/community/CommunityPreview";
 import UserPreview from "@/components/ui/user/UserPreview";
 import SearchTabs from "@/components/ui/search/SearchTabs";
+import LoadingInfo from "@/components/ui/InfoText";
+import LoadingError from "@/components/ui/LoadingError";
 
 
 const tabs = ["posts", "communities", "users"] as const;
-
-type Tab = (typeof tabs)[number];
 
 type SearchItem = PostType | CommunityType | UserType;
 
@@ -31,7 +30,6 @@ type Props = {
 
 export default function SearchPageContent({ query }: Props) {
   const [activeTab, setActiveTab] = useState<"posts" | "communities" | "users">("posts");
-  const [loading, setLoading] = useState(false);
 
   const sentinelRef = useRef<HTMLLIElement>(null);
   const loadingNextRef = useRef(false);
@@ -141,31 +139,43 @@ export default function SearchPageContent({ query }: Props) {
   return (
     <div className="flex w-full items-center flex-col">
       <SearchTabs activeTab={activeTab} setActiveTab={setActiveTab} />
-
-      <div className="mt-12 w-full max-w-200">
-        {loading ? (
-          <InfoText text="Ładowanie wyników..." />
-        ) :
-          <ul>
-            {
-              searchData.map((item, index) => (
-                <li
-                  key={index}
-                  className="w-full max-w-200 mb-10 relative"
-                  ref={
-                    index === searchData.length - 5
-                      ? sentinelRef
-                      : null
-                  }
-                >
-                  {renderItem(item)}
-                </li>
-              )
-              )
-            }
-          </ul>
+      <ul className="flex flex-col items-center w-full mt-12">
+        {
+          searchData.map((item, index) => (
+            <li
+              key={index}
+              className="w-full max-w-200 mb-10 relative last:[&>div>div:last-child]:bg-bg"
+              ref={
+                index === searchData.length - 5
+                  ? sentinelRef
+                  : null
+              }
+            >
+              {renderItem(item)}
+            </li>
+          )
+          )
         }
-      </div>
+      </ul>
+
+      {(isPending || isFetchingNextPage) && <LoadingInfo text="Ładowanie..." />}
+
+      {!isPending && !isError && searchData.length === 0 && (
+        <LoadingInfo text="Nic nie znaleziono. :c" />
+      )}
+
+      {isError && (
+        <LoadingError
+          error={error}
+          isFetchNextPageError={false}
+          fetchNextPage={fetchNextPage}
+          refetch={refetch}
+        />
+      )}
+
+      {!isPending && !isError && !hasNextPage && searchData.length > 0 && (
+        <LoadingInfo text="Wyświetlono już wszystko!" />
+      )}
     </div>
   );
 }

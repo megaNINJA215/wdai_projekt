@@ -3,6 +3,7 @@
 
 @theme {
 	--color-bg: hsl(80, 5%, 10%);
+	--color-bg-hover: hsl(80, 5%, 15%);
 	--color-fg: hsl(100, 5%, 25%);
 	--color-fg-hover: hsl(100, 5%, 30%);
 	--color-fg-muted: hsl(100, 5%, 20%);

@@ -49,6 +49,20 @@ na chwilę obecną zrobione jest:
     - losowe, najnowsze gdy jest się niezalogowanym
     - z społeczności których jest się członkiem jeśli jest się zalogowanym
 - [x] wyświetlanie konkretnego postu
+- [x] wyświetlanie wyszukiwanych treści
+    - jeśli skorzystało się z podpowiedzi to przeniesie ona bezpośrednio na profil innego użytkownika/społeczności, co jest już zaimplementowane
+    - jeśli postanowi się po prostu wyszukać jakiś tekst będą się wyświetlać posty, społeczności i użytkownicy zawierający wyszukiwaną wzmiankę
+    - jeśli chodzi o wyszukiwanie to na chwilę obecną:
+        - dostępne społeczności:
+            - wdai
+            - boni (dla kontekstu, Boni to imie mojego pieska)
+            - test
+            - testy
+            - testing
+        - dostępni użytkownicy:
+            - megaNINJA215
+            - megaBONI215
+            - od test_user_1 do test_user_100
 
 na dniach będzie implementowane (kolejność losowa):
 
@@ -68,19 +82,4 @@ na dniach będzie implementowane (kolejność losowa):
 - [ ] wyświetlanie użytkowników
     - wyświetlanie publicznych informacji o użytkowniku
     - wyświetlanie postów danego użytkownika (niezależnie od przypisanej społeczności lub jej braku)
-- [ ] wyświetlanie wyszukiwanych treści
-    - jeśli skorzystało się z podpowiedzi to przeniesie ona bezpośrednio na profil innego użytkownika/społeczności, co jest już zaimplementowane
-    - jeśli postanowi się po prostu wyszukać jakiś tekst będą się wyświetlać posty, społeczności i użytkownicy zawierający wyszukiwaną wzmiankę
-    - jeśli chodzi o wyszukiwanie to na chwilę obecną:
-        - nie ma żadnej implementacji ui/ux umożliwiającej wyświetlanie postów, a znajdowanie społeczności i użytkowników dostępne jest tylko poprzez podpowiedzi uzupełniania
-        - dostępne społeczności:
-            - wdai
-            - boni (dla kontekstu, Boni to imie mojego pieska)
-            - test
-            - testy
-            - testing
-        - dostępni użytkownicy:
-            - megaNINJA215
-            - megaBONI215
-            - od test_user_1 do test_user_100
 - [ ] możliwość edycji tytułu/opisu jeśli jest się jego autorem

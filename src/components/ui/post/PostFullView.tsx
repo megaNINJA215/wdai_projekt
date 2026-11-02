@@ -27,8 +27,9 @@ export default function PostFullView(props: PostFullViewProps) {
   const [isEditing, setIsEditing] = useState(false);
 
   return (
-    <div className="flex flex-col items-center w-full  mb-20 h-full">
-      <div className="border-3 border-border rounded-4xl bg-fg w-full max-w-200">
+    <div className="flex flex-col items-center w-full mb-20 h-full">
+      {/* <div className="border-3 border-border rounded-4xl bg-fg w-full max-w-200"> */}
+      <div className=" rounded-4xl w-full max-w-200 relative">
         <PostHeader
           authorUsername={props.authorUsername}
           created_at={props.post.created_at}
@@ -36,7 +37,6 @@ export default function PostFullView(props: PostFullViewProps) {
           edited_at={props.post.edited_at}
         />
 
-        <div className="h-1 w-[calc(100%-4rem)] bg-fg-hover mx-8 rounded-full" />
         {isEditing ? <>
           <InfoText text="TODO: implement edit post" />
 
@@ -55,12 +55,9 @@ export default function PostFullView(props: PostFullViewProps) {
           </button>
         </>
           : <>
-            <PostContent title={props.post.title} content={props.post.content} />
+            <PostContent title={props.post.title} content={props.post.content.trim()} />
 
-            <div className="w-full h-10 text-center bg-fg-muted rounded-b-4xl relative
-                        before:content-[''] before:absolute before:-top-6 before:left-0 before:w-full before:h-6
-                        before:bg-linear-to-t before:from-fg-muted before:to-transparent
-                        flex flex-row items-center justify-end gap-2 text-primary text-md font-semibold pr-4">
+            <div className="bg-bg-hover w-fit h-8 absolute -bottom-10 right-8 flex flex-row items-center justify-end text-primary text-center text-md font-semibold rounded-full">
               {props.isAuthor && (
                 <Edit setIsEditing={setIsEditing} />
               )}
@@ -69,7 +66,7 @@ export default function PostFullView(props: PostFullViewProps) {
             </div>
           </>
         }
-      </div >
-    </div >
+      </div>
+    </div>
   );
 };

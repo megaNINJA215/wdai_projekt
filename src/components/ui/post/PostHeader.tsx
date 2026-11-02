@@ -12,7 +12,7 @@ export interface PostHeaderProps {
 
 export default function PostHeader(props: PostHeaderProps) {
   return (
-    <div className="flex flex-row items-end justify-between w-[calc(100%-2rem)] m-4">
+    <div className="flex flex-row items-end justify-between w-[calc(100%-2rem)] mx-4 mb-2">
       <div className="flex flex-row gap-2">
 
         {props.communityName ? <>

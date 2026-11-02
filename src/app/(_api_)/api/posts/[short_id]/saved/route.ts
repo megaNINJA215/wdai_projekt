@@ -84,8 +84,6 @@ export async function PATCH(req: NextRequest, { params }: { params: Promise<{ sh
     });
   }
 
-  console.log(data.saved ? `Post ${short_id} saved` : `Post ${short_id} unsaved`);
-
   return NextResponse.json(
     {
       message: data.saved ? "Post został zapisany." : "Post został usunięty z zapisanych.",

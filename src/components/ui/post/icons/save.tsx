@@ -28,7 +28,6 @@ export default function Save(props: SaveProps) {
 
   const handleSave = async () => {
     setSaved(prev => !prev);
-    console.log(saved ? 'Post unsaved' : 'Post saved');
     mutate();
   };
 

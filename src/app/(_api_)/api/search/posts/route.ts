@@ -1,6 +1,7 @@
 import { NextResponse, NextRequest } from "next/server";
 import { can } from "@/utils/permissions";
 import prisma from "@/lib/prisma/prisma";
+import { Post } from "@/types/post";
 
 export async function GET(req: NextRequest) {
   const PAGE_SIZE = 30;
@@ -32,21 +33,8 @@ export async function GET(req: NextRequest) {
     );
   }
 
-  const searchParams = new URL(req.url).searchParams;
-  const rawPage = searchParams.get("page");
-  const page = rawPage === null ? 0 : Number(rawPage);
-
-  if (!Number.isSafeInteger(page) || page < 0) {
-    return NextResponse.json(
-      {
-        error: {
-          code: "INVALID_PAGE",
-          message: "Numer strony musi być nieujemną liczbą całkowitą.",
-        },
-      },
-      { status: 400 },
-    );
-  }
+  const searchParams = req.nextUrl.searchParams;
+  const cursorId = searchParams.get("cursorId");
 
   const rows = await prisma.posts.findMany({
     where: {
@@ -55,11 +43,15 @@ export async function GET(req: NextRequest) {
         mode: "insensitive",
       },
     },
-    orderBy: {
-      title: "asc",
-    },
-    skip: page * PAGE_SIZE,
+    orderBy: [
+      { created_at: "desc" },
+      { short_id: "desc" },
+    ],
+
+    cursor: cursorId ? { short_id: cursorId } : undefined,
+    skip: cursorId ? 1 : undefined,
     take: PAGE_SIZE + 1,
+
     select: {
       communities: {
         select: {
@@ -74,6 +66,8 @@ export async function GET(req: NextRequest) {
         },
       },
       short_id: true,
+      created_at: true,
+      edited_at: true,
     },
   });
 
@@ -83,14 +77,14 @@ export async function GET(req: NextRequest) {
     ? rows.slice(0, PAGE_SIZE)
     : rows;
 
-  const nextPage = hasMore
-    ? page + 1
+  const nextCursor = hasMore
+    ? pageRows[pageRows.length - 1]!.short_id
     : null;
 
   return NextResponse.json(
     {
-      users: pageRows.map(({ users, communities, ...row }) => { return { ...row, author: users.username, community: communities?.name } }),
-      nextPage,
+      data: pageRows.map(({ users, communities, ...row }) => { return { ...row, author: users.username, community: communities?.name } }),
+      nextCursor,
     },
     { status: 200 }
   );

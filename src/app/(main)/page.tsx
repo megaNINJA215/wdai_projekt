@@ -100,7 +100,7 @@ export default function Home() {
                 : null
             }
           >
-            <PostPreview post={post} clampLines={10} />
+            <PostPreview data={post} clampLines={10} />
           </li>
         ))}
       </ul>

@@ -1,6 +1,7 @@
 import { NextResponse, NextRequest } from "next/server";
 import { can } from "@/utils/permissions";
 import prisma from "@/lib/prisma/prisma";
+import { Community } from "@/types/community";
 
 export async function GET(req: NextRequest) {
   const PAGE_SIZE = 30;
@@ -32,34 +33,25 @@ export async function GET(req: NextRequest) {
     );
   }
 
-  const searchParams = new URL(req.url).searchParams;
-  const rawPage = searchParams.get("page");
-  const page = rawPage === null ? 0 : Number(rawPage);
+  const searchParams = req.nextUrl.searchParams;
+  const cursorId = searchParams.get("cursorId");
 
-  if (!Number.isSafeInteger(page) || page < 0) {
-    return NextResponse.json(
-      {
-        error: {
-          code: "INVALID_PAGE",
-          message: "Numer strony musi być nieujemną liczbą całkowitą.",
-        },
-      },
-      { status: 400 },
-    );
-  }
-
-  const rows = await prisma.communities.findMany({
+  const rows: Community[] = await prisma.communities.findMany({
     where: {
       name: {
         contains: query,
         mode: "insensitive",
       }
     },
-    orderBy: {
-      name: "asc",
-    },
-    skip: page * PAGE_SIZE,
+    orderBy: [
+      { created_at: "desc" },
+      { name: "desc" },
+    ],
+
+    cursor: cursorId ? { name: cursorId } : undefined,
+    skip: cursorId ? 1 : undefined,
     take: PAGE_SIZE + 1,
+
     select: {
       name: true,
       description: true,
@@ -72,14 +64,14 @@ export async function GET(req: NextRequest) {
     ? rows.slice(0, PAGE_SIZE)
     : rows;
 
-  const nextPage = hasMore
-    ? page + 1
+  const nextCursor = hasMore
+    ? pageRows[pageRows.length - 1]!.name
     : null;
 
   return NextResponse.json(
     {
-      communities: pageRows,
-      nextPage,
+      data: pageRows,
+      nextCursor,
     },
     { status: 200 }
   );

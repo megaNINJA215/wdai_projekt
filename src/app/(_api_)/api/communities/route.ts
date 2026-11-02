@@ -5,7 +5,7 @@ import prisma from "@/lib/prisma/prisma";
 import { getCurrentUser } from "@/lib/auth/currentUser";
 
 const createSchema = z.object({
-  communityName: z.string().min(3, "Nazwa społeczności musi być dłuższa niż 3 znaki").max(100, "Nazwa społeczności nie może być dłuższa niż 100 znaków"),
+  communityName: z.string().min(3, "Nazwa społeczności musi być dłuższa niż 3 znaki").max(20, "Nazwa społeczności nie może być dłuższa niż 20 znaków"),
 });
 
 export async function POST(req: NextRequest) {

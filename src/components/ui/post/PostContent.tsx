@@ -12,7 +12,6 @@ export default function PostContent(props: PostContentProps) {
   return (
     <div className="px-4">
       <h1 className="text-2xl font-bold mx-4 mb-2 wrap-anywhere">{props.title}</h1>
-      <div className="h-1 w-[calc(100%-4rem)] bg-fg-muted mx-8 rounded-full group-hover:bg-fg transition-colors duration-200" />
       <FormattedText text={props.content} style="text-md text-text-muted wrap-anywhere mx-4" clampLines={props.clampLines} setIsClamped={props.setIsClamped} />
     </div>
   );

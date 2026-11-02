@@ -147,7 +147,7 @@ export async function GET(req: NextRequest, { params }: { params: Promise<{ name
       { short_id: "desc" },
     ],
 
-    cursor: cursorId ? { id: cursorId } : undefined,
+    cursor: cursorId ? { short_id: cursorId } : undefined,
 
     skip: cursorId ? 1 : undefined,
 

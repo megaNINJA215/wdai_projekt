@@ -93,7 +93,7 @@ export default function Home() {
         {personalizedPosts.map((post, index) => (
           <li
             key={post.short_id}
-            className="w-full max-w-200 mb-10 relative"
+            className="w-full max-w-200 mb-10 relative last:[&>div>div:last-child]:bg-bg"
             ref={
               index === personalizedPosts.length - 5
                 ? sentinelRef

@@ -63,6 +63,9 @@ na chwilę obecną zrobione jest:
             - megaNINJA215
             - megaBONI215
             - od test_user_1 do test_user_100
+- [x] wyświetlanie użytkowników
+    - wyświetlanie publicznych informacji o użytkowniku
+    - wyświetlanie postów danego użytkownika (niezależnie od przypisanej społeczności lub jej braku)
 
 na dniach będzie implementowane (kolejność losowa):
 
@@ -79,7 +82,4 @@ na dniach będzie implementowane (kolejność losowa):
     - możliwość dołączenia/opuszczenia danej społeczności
     - (czysto informacyjnie, nie trzeba być jej członkiem aby móc ją wyświetlać, natomiast trzeba być aby móc publikować w niej posty oraz aby wyświetlały się ona na stronie głównej)
     - możliwość edycji opisu społeczności jeśli jest się jej właścicielem
-- [ ] wyświetlanie użytkowników
-    - wyświetlanie publicznych informacji o użytkowniku
-    - wyświetlanie postów danego użytkownika (niezależnie od przypisanej społeczności lub jej braku)
 - [ ] możliwość edycji tytułu/opisu jeśli jest się jego autorem

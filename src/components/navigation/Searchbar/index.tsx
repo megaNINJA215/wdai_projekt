@@ -35,7 +35,7 @@ export default function Searchbar() {
         label="Szukaj..."
         onChange={(e) => {
           setSearchValue(e.target.value);
-          setShowAutocomplete(e.target.value.length > 0);
+          setShowAutocomplete(e.target.value.trim().length > 0);
         }}
         value={searchValue}
         ref={inputRef}
@@ -43,7 +43,7 @@ export default function Searchbar() {
         onSearch={() => {
           if (searchValue.trim().length > 0) {
             setShowAutocomplete(false);
-            redirect(`/search?query=${encodeURIComponent(searchValue)}`);
+            redirect(`/search?query=${encodeURIComponent(searchValue.trim())}`);
           }
         }}
       />

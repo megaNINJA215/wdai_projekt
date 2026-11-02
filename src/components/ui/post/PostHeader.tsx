@@ -21,10 +21,10 @@ export default function PostHeader(props: PostHeaderProps) {
             <ProfilePicture type="community" name={props.communityName} size={48} />
           </Link>
           <div className="flex flex-col whitespace-nowrap">
-            <Link href={`/c/${props.communityName}`} className="font-bold text-primary text-lg z-5">
+            <Link href={`/c/${props.communityName}`} className="font-bold text-primary text-lg z-5 hover:text-primary-hover">
               c/{props.communityName}
             </Link>
-            <Link href={`/u/${props.authorUsername}`} className="text-sm text-text-secondary z-5">
+            <Link href={`/u/${props.authorUsername}`} className="text-sm text-text-secondary z-5 hover:text-text-secondary-hover">
               u/{props.authorUsername}
             </Link>
           </div>
@@ -35,7 +35,7 @@ export default function PostHeader(props: PostHeaderProps) {
             <ProfilePicture type="user" name={props.authorUsername} size={48} />
           </Link>
           <div className="flex items-center whitespace-nowrap ">
-            <Link href={`/u/${props.authorUsername}`} className="font-bold text-primary text-lg z-5">
+            <Link href={`/u/${props.authorUsername}`} className="font-bold text-primary text-lg z-5 hover:text-primary-hover">
               u/{props.authorUsername}
             </Link>
           </div>

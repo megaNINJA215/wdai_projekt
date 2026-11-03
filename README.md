@@ -66,6 +66,11 @@ na chwilę obecną zrobione jest:
 - [x] wyświetlanie użytkowników
     - wyświetlanie publicznych informacji o użytkowniku
     - wyświetlanie postów danego użytkownika (niezależnie od przypisanej społeczności lub jej braku)
+- [x] wyświetlanie społeczności
+    - wyświetlanie podstawowych informacji o społeczności jak np. nazwa, opis, liczba członków
+    - wyświetlanie postów przypisanych do danej społeczności
+    - możliwość dołączenia/opuszczenia danej społeczności
+    - (czysto informacyjnie, nie trzeba być jej członkiem aby móc ją wyświetlać, natomiast trzeba być aby móc publikować w niej posty oraz aby wyświetlały się ona na stronie głównej)
 
 na dniach będzie implementowane (kolejność losowa):
 
@@ -76,10 +81,7 @@ na dniach będzie implementowane (kolejność losowa):
     - możliwość stworzenia nowej społeczności
     - lista społeczności których jest się członkiem
     - lista "odkrywaj" kilku losowych społeczności których nie jest się członkiem
-- [ ] wyświetlanie społeczności
-    - wyświetlanie podstawowych informacji o społeczności jak np. nazwa, opis, liczba członków
-    - wyświetlanie postów przypisanych do danej społeczności
-    - możliwość dołączenia/opuszczenia danej społeczności
-    - (czysto informacyjnie, nie trzeba być jej członkiem aby móc ją wyświetlać, natomiast trzeba być aby móc publikować w niej posty oraz aby wyświetlały się ona na stronie głównej)
-    - możliwość edycji opisu społeczności jeśli jest się jej właścicielem
-- [ ] możliwość edycji tytułu/opisu jeśli jest się jego autorem
+- [ ] możliwość edycji opisu społeczności jeśli jest się jej właścicielem
+- [ ] możliwość edycji tytułu/opisu postu jeśli jest się jego autorem
+- [ ] możliwość stworzenia posta
+- [ ] możliwość stworzenia społeczności

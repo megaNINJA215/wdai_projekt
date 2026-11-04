@@ -69,6 +69,7 @@ na chwilę obecną zrobione jest:
     - wyświetlanie postów przypisanych do danej społeczności
     - możliwość dołączenia/opuszczenia danej społeczności
     - (czysto informacyjnie, nie trzeba być jej członkiem aby móc ją wyświetlać, natomiast trzeba być aby móc publikować w niej posty oraz aby wyświetlały się ona na stronie głównej)
+- [x] możliwość wylogowania się
 
 na dniach będzie implementowane (kolejność losowa):
 

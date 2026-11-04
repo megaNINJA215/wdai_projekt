@@ -4,6 +4,8 @@ import prisma from '@/lib/prisma/prisma';
 import { User } from '@/types/user';
 import LoadingInfo from '../LoadingInfo';
 import ProfilePicture from '../ProfilePicture';
+import { getCurrentUser } from '@/lib/auth/currentUser';
+import LogoutButton from '@/components/auth/LogoutButton';
 
 export interface UserFullViewProps {
   user: User;
@@ -40,8 +42,10 @@ export default async function UserFullView(props: UserFullViewProps) {
     },
   });
 
+  const currentUser = await getCurrentUser();
+
   return (
-    <div className="flex sm:flex-row flex-col w-full mx-auto justify-between">
+    <div className="flex sm:flex-row flex-col w-full mx-auto justify-between relative">
       <div className="flex-1 flex flex-row items-center text-clip">
         <div className="size-20 sm:size-24 md:size-32 shrink-0">
           <ProfilePicture
@@ -66,6 +70,9 @@ export default async function UserFullView(props: UserFullViewProps) {
         <div>
           Członek {member_ship_count} społeczności
         </div>
+      </div>
+      <div className="flex gap-4 absolute -bottom-10 right-0">
+        {currentUser?.username === user.username && <LogoutButton />}
       </div>
     </div>
   );

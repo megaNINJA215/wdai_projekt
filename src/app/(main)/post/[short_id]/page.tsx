@@ -2,8 +2,8 @@ import 'server-only';
 
 import { getCurrentUser } from "@/lib/auth/currentUser";
 import prisma from '@/lib/prisma/prisma';
-import LoadingInfo from '@/components/ui/LoadingInfo';
 import PostFullView from '@/components/ui/post/PostFullView';
+import { notFound } from 'next/navigation';
 
 type Props = {
   params: Promise<{ short_id: string }>;
@@ -40,7 +40,7 @@ export default async function CommunityPage({ params }: Props) {
   });
 
   if (!postData) {
-    return <LoadingInfo text="Post nie istnieje. :c" />;
+    notFound()
   }
 
   const { users: author, communities: community, ...post } = postData;

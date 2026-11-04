@@ -1,10 +1,10 @@
 "use server";
 
 import prisma from '@/lib/prisma/prisma';
-import LoadingInfo from '../LoadingInfo';
 import ProfilePicture from '../ProfilePicture';
 import { getCurrentUser } from '@/lib/auth/currentUser';
 import SeparatorButtons from './CommunityButtons';
+import { notFound } from "next/navigation";
 
 export interface CommunityFullViewProps {
   name: string;
@@ -25,9 +25,7 @@ export default async function CommunityFullView(props: CommunityFullViewProps) {
   });
 
   if (!community) {
-    return <div className="flex items-center justify-center w-full h-full">
-      <LoadingInfo text={`Nie znaleziono społeczności o nazwie ${props.name}.`} />
-    </div>
+    notFound();
   }
 
   const post_count = await prisma.posts.count({

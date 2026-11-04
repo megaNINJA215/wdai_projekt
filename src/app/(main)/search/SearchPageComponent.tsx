@@ -80,7 +80,6 @@ export default function SearchPageContent({ query }: Props) {
       }
     },
     getNextPageParam: (lastPage) => lastPage.nextCursor ?? undefined,
-    staleTime: Infinity,
   });
 
   const searchData: SearchItem[] =

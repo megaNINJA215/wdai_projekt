@@ -46,7 +46,6 @@ export default function SearchAutocomplete(props: SearchAutocompleteProps) {
 
       return await response.json();
     },
-    staleTime: Infinity,
   });
 
 

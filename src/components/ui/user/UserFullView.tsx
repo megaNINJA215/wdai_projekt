@@ -2,10 +2,10 @@
 
 import prisma from '@/lib/prisma/prisma';
 import { User } from '@/types/user';
-import LoadingInfo from '../LoadingInfo';
 import ProfilePicture from '../ProfilePicture';
 import { getCurrentUser } from '@/lib/auth/currentUser';
 import LogoutButton from '@/components/auth/LogoutButton';
+import { notFound } from 'next/navigation';
 
 export interface UserFullViewProps {
   user: User;
@@ -25,9 +25,7 @@ export default async function UserFullView(props: UserFullViewProps) {
   });
 
   if (!user) {
-    return <div className="flex items-center justify-center w-full h-full">
-      <LoadingInfo text={`Nie znaleziono użytkownika o nazwie ${props.user.username}.`} />
-    </div>
+    notFound();
   }
 
   const post_count = await prisma.posts.count({

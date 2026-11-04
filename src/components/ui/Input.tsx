@@ -1,3 +1,4 @@
+import { cn } from "@/utils/cn";
 import { useEffect, useState } from "react";
 
 export type ValidationState =
@@ -15,6 +16,7 @@ export interface InputProps {
   validate?: (value: string) => ValidationState;
   ignoreWarning?: boolean;
   required?: boolean;
+  style?: string;
 }
 
 const validationColors: Record<ValidationState, string> = {
@@ -51,9 +53,9 @@ export default function Input(props: InputProps) {
   }, [props.value, props.validate]);
 
   return (
-    <div className="relative w-full mb-4">
+    <div className={cn("relative w-full mb-4 text-2xl", props.style)}>
       <input
-        className="peer w-full h-10 bg-bg-secondary text-fg-primary rounded px-4 text-2xl leading-10 focus:outline-none ring-2 ring-primary placeholder-transparent"
+        className={cn("peer w-full h-10 bg-bg-secondary text-fg-primary rounded px-4") + " focus:outline-none ring-2 ring-primary placeholder-transparent"}
         placeholder={props.placeholder}
         type={props.type}
         name={props.name}
@@ -64,7 +66,7 @@ export default function Input(props: InputProps) {
 
       <label
         className={`
-          pointer-events-none absolute left-0 top-0 h-10 translate-x-4 leading-10 text-2xl whitespace-nowrap overflow-hidden text-ellipsis transition-all duration-500
+          pointer-events-none absolute left-0 top-0 h-10 translate-x-4 leading-10 whitespace-nowrap overflow-hidden text-ellipsis transition-all duration-500
           peer-focus:left-4 peer-focus:-top-8.75 peer-focus:-translate-x-2 peer-focus:text-base
           peer-not-placeholder-shown:left-4 peer-not-placeholder-shown:-top-8.75 peer-not-placeholder-shown:-translate-x-2 peer-not-placeholder-shown:text-base
           ${validationColors[validationState]}

@@ -6,6 +6,7 @@ import { getCurrentUser } from "@/lib/auth/currentUser";
 
 const createSchema = z.object({
   communityName: z.string().min(3, "Nazwa społeczności musi być dłuższa niż 3 znaki").max(20, "Nazwa społeczności nie może być dłuższa niż 20 znaków"),
+  communityDescription: z.string().max(200, "Opis społeczności nie może być dłuższy niż 200 znaków").optional(),
 });
 
 export async function POST(req: NextRequest) {
@@ -35,6 +36,8 @@ export async function POST(req: NextRequest) {
   }
 
   data.data.communityName = data.data.communityName.normalize();
+  data.data.communityDescription = data.data.communityDescription?.normalize();
+
   const communityExists = !!(
     await prisma.communities.findUnique({
       where: {
@@ -72,6 +75,7 @@ export async function POST(req: NextRequest) {
   const community = await prisma.communities.create({
     data: {
       name: data.data.communityName,
+      description: data.data.communityDescription,
       owner_id: currentUser.id,
     },
   });

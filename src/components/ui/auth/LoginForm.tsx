@@ -1,8 +1,8 @@
 "use client";
 
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import Input from './Input';
-import Submit from './Submit';
+import Input from '../Input';
+import Submit from '../Submit';
 import { useRouter } from 'next/navigation';
 import { useAuthRefresh } from '@/lib/auth/useAuthRefresh';
 import { useState } from 'react';

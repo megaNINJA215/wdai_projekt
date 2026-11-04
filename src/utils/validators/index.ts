@@ -1,5 +1,5 @@
 
-import { ValidationState } from "@/components/ui/auth/Input";
+import { ValidationState } from "@/components/ui/Input";
 
 export const validateLogin = (value: string): ValidationState => {
   if (value.length < 3 || value.length > 20) {
@@ -47,3 +47,17 @@ export const validateConfirmPassword = (
 
   return "valid";
 };
+
+export const validateCommunityName = (value: string): ValidationState => {
+  if (value.length < 3 || value.length > 20 || !/^[a-zA-Z0-9_]+$/.test(value)) {
+    return "invalid";
+  }
+  return "valid";
+};
+
+export const validateCommunityDescription = (value: string): ValidationState => {
+  if (value.length > 200) {
+    return "invalid";
+  }
+  return "valid";
+}

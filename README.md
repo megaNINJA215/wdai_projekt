@@ -72,8 +72,8 @@ na chwilę obecną zrobione jest:
 - [x] możliwość wylogowania się
 - [x] strona do logowania się i/lub zakładania nowego
 - [x] możliwość przeglądania zapisanych postów
+- [x] możliwość stworzenia społeczności
 
 na dniach będzie implementowane (kolejność losowa):
 
 - [ ] możliwość stworzenia posta
-- [ ] możliwość stworzenia społeczności

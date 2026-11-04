@@ -1,6 +1,5 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
 import CommunityButton from "./CommunityButton";
 import { cn } from "@/utils/cn";
 import Accordion from "./Accordion";
@@ -11,35 +10,10 @@ export interface DiscoverCommunitiesProps {
 }
 
 export default function DiscoverCommunities(props: DiscoverCommunitiesProps) {
-  const containerRef = useRef<HTMLDivElement | null>(null);
-  const [count, setCount] = useState(0);
-
-  useEffect(() => {
-    const container = containerRef.current;
-    if (!container) return;
-
-    const observer = new ResizeObserver(([entry]) => {
-      const height = entry.contentRect.height;
-
-      const itemHeight = 40;
-      const gap = 8;
-
-      const newCount = Math.floor(
-        (height + gap) / (itemHeight + gap)
-      );
-
-      setCount(newCount);
-    });
-
-    observer.observe(container);
-
-    return () => observer.disconnect();
-  }, []);
-
   const { data } = useQuery({
     queryKey: ["discover-communities"],
     queryFn: async () => {
-      const response = await fetch(`/api/communities/discover${props.size === "full" && count > 0 ? `?limit=${count}` : ""}`, { cache: "no-store" });
+      const response = await fetch(`/api/communities/discover${props.size === "full" ? `?limit=30` : ""}`, { cache: "no-store" });
       if (!response.ok) {
         throw new Error(
           `Nie udało się pobrać społeczności (${response.status}).`
@@ -64,15 +38,17 @@ export default function DiscoverCommunities(props: DiscoverCommunitiesProps) {
       {props.size === "full" && <>
 
         Odkryj społeczności, które mogą cię zainteresować. Stwórz konto by do nich dołączyć!
-        <div className="flex flex-col gap-2 my-2 flex-1 overflow-y-hidden" ref={containerRef}>
+        <div className="flex flex-col gap-2 my-2 flex-1 min-h-0 overflow-hidden">
           {communities.map((community) => (
-            <CommunityButton key={community} name={community} />
+            <div key={community} className="shrink-0">
+              <CommunityButton name={community} />
+            </div>
           ))}
         </div>
       </>}
 
       {props.size === "compact" && <>
-        <Accordion title="Odkryj nowe społeczności!">
+        <Accordion title="Odkrywaj społeczności!">
           <div className="w-full mx-auto flex flex-col gap-2 pb-2 overflow-y-hidden">
             {communities.map((community) => (
               <CommunityButton key={community} name={community} />

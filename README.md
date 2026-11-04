@@ -71,9 +71,9 @@ na chwilę obecną zrobione jest:
     - (czysto informacyjnie, nie trzeba być jej członkiem aby móc ją wyświetlać, natomiast trzeba być aby móc publikować w niej posty oraz aby wyświetlały się ona na stronie głównej)
 - [x] możliwość wylogowania się
 - [x] strona do logowania się i/lub zakładania nowego
+- [x] możliwość przeglądania zapisanych postów
 
 na dniach będzie implementowane (kolejność losowa):
 
 - [ ] możliwość stworzenia posta
 - [ ] możliwość stworzenia społeczności
-- [ ] możliwość przeglądania zapisanych postów

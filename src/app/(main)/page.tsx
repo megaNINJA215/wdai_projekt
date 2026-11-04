@@ -49,7 +49,6 @@ export default function Home() {
       }>;
     },
     getNextPageParam: (lastPage) => lastPage.nextCursor ?? undefined,
-    staleTime: Infinity,
   });
 
   const personalizedPosts = data?.pages.flatMap((page) => page.posts) ?? [];

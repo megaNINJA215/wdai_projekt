@@ -37,7 +37,7 @@ export default function DiscoverCommunities(props: DiscoverCommunitiesProps) {
   }, []);
 
   const { data } = useQuery({
-    queryKey: ["communities", "discover"],
+    queryKey: ["discover-communities"],
     queryFn: async () => {
       const response = await fetch(`/api/communities/discover${props.size === "full" && count > 0 ? `?limit=${count}` : ""}`, { cache: "no-store" });
       if (!response.ok) {

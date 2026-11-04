@@ -1,6 +1,7 @@
 "use client";
 
-import { useMutation } from "@tanstack/react-query";
+import { MEMBERSHIP_QUERY_KEYS } from "@/utils/queryKeys";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useRouter } from 'next/navigation';
 
 export interface MembershipButtonProps {
@@ -11,6 +12,7 @@ export interface MembershipButtonProps {
 
 export default function MembershipButton(props: MembershipButtonProps) {
   const router = useRouter();
+  const queryClient = useQueryClient();
 
   const { mutate, isPending, } = useMutation({
     mutationKey: ["membership", props.community_name],
@@ -25,10 +27,12 @@ export default function MembershipButton(props: MembershipButtonProps) {
       return result.json();
     },
     onSuccess: () => {
+      MEMBERSHIP_QUERY_KEYS.map((queryKey) =>
+        queryClient.resetQueries({ queryKey })
+      )
       router.refresh();
     }
   });
-
 
   return (
     <button onClick={() => { mutate(); props.setIsMember(prev => !prev); }} disabled={isPending} className="bg-primary text-text px-2 sm:px-4 py-1 sm:py-2 rounded-full hover:cursor-pointer hover:bg-primary-hover h-8 sm:h-10">

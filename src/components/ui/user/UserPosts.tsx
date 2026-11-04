@@ -52,7 +52,6 @@ export default function UserPosts(props: UserPostsProps) {
       }>;
     },
     getNextPageParam: (lastPage) => lastPage.nextCursor ?? undefined,
-    staleTime: Infinity,
   });
 
   const personalizedPosts = data?.pages.flatMap((page) => page.posts) ?? [];

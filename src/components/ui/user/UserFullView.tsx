@@ -2,7 +2,7 @@
 
 import prisma from '@/lib/prisma/prisma';
 import { User } from '@/types/user';
-import InfoText from '../InfoText';
+import LoadingInfo from '../LoadingInfo';
 import ProfilePicture from '../ProfilePicture';
 
 export interface UserFullViewProps {
@@ -24,7 +24,7 @@ export default async function UserFullView(props: UserFullViewProps) {
 
   if (!user) {
     return <div className="flex items-center justify-center w-full h-full">
-      <InfoText text={`Nie znaleziono użytkownika o nazwie ${props.user.username}.`} />
+      <LoadingInfo text={`Nie znaleziono użytkownika o nazwie ${props.user.username}.`} />
     </div>
   }
 

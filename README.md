@@ -17,11 +17,9 @@ na chwilę obecną zrobione jest:
 - [x] społeczności:
     - możliwość założenia nowej społeczności
     - możliwość dołączenia lub wyjścia ze społeczności
-    - możliwość edytowania opisu społeczności (tylko jeśli jest się jej właścicielem)
     - pozyskania informacji do wyświetlenia społeczności
 - [x] posty:
     - możliwość tworzenia nowych postów z lub bez przypisanej społeczności
-    - możliwość edytowania posta jeśli jest się jego autorem
     - możliwość pobierania postów danego użytkownika, z społeczności lub spersonalizowanych (czyli z społeczności do ktorych się należy), na chwilę obecną pobierają się tylko od najnowszych
         - wyświetlanie postów wspiera infinity scroll, jeśli w danej społeczności znajduje się np. 100 postów ( c/test ) to chcąc je wyświetlić nie pobierzemy wszystkich naraz tylko 30 (w kolejności od najnowszego), po zjechaniu na dół strony gdzie znajduje się koniec listy tych 30 postów automatycznie zostanie pobrane kolejne 30 z nich i tak aż do wyświetlenia wszystkich dostępnych postów
     - możliwość formatowania tekstu wyświetlanego w postach, obejmuje to:
@@ -42,7 +40,7 @@ na chwilę obecną zrobione jest:
 
 - [x] generalny layout zawierający elementy takie jak sidebar czy header wyświetlane na prawie każdej stronie
     - [x] header
-    - [ ] sidebar (jest widoczny, brak zawartości)
+    - [x] sidebar
 - [x] działający searchbar w headerze z podpowiedziami uzupełnienia
 - [x] responsywność, jak tworzę nowy komponent od razu zwracam uwagę na to jak będzie wyglądać zarówno na komputerze jak i na urządzeniach mobilnych
 - [x] wyświetlanie spersonalizowanych postów na głównej stronie
@@ -75,13 +73,6 @@ na chwilę obecną zrobione jest:
 na dniach będzie implementowane (kolejność losowa):
 
 - [ ] strona do logowania się i/lub zakładania nowego
-- [ ] uzupełnienie sidebaru
-    - logo/nazwa projektu
-    - możliwość stworzenia posta bez przypisanej społeczności
-    - możliwość stworzenia nowej społeczności
-    - lista społeczności których jest się członkiem
-    - lista "odkrywaj" kilku losowych społeczności których nie jest się członkiem
-- [ ] możliwość edycji opisu społeczności jeśli jest się jej właścicielem
-- [ ] możliwość edycji tytułu/opisu postu jeśli jest się jego autorem
 - [ ] możliwość stworzenia posta
 - [ ] możliwość stworzenia społeczności
+- [ ] możliwość przeglądania zapisanych postów

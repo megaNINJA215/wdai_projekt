@@ -5,8 +5,8 @@ import PostContent from './PostContent';
 import Share from './icons/share';
 import Save from './icons/save';
 import { useState } from 'react';
-import InfoText from '../InfoText';
-import Edit from './icons/edit';
+import LoadingInfo from '../LoadingInfo';
+// import Edit from './icons/edit';
 
 export interface PostFullViewProps {
   authorUsername: string;
@@ -38,7 +38,7 @@ export default function PostFullView(props: PostFullViewProps) {
         />
 
         {isEditing ? <>
-          <InfoText text="TODO: implement edit post" />
+          <LoadingInfo text="TODO: implement edit post" />
 
           <button
             className="hover:cursor-pointer hover:bg-fg-hover rounded-full px-2"
@@ -58,9 +58,9 @@ export default function PostFullView(props: PostFullViewProps) {
             <PostContent title={props.post.title} content={props.post.content.trim()} />
 
             <div className="bg-bg-hover w-fit h-8 absolute -bottom-10 right-8 flex flex-row items-center justify-end text-primary text-center text-md font-semibold rounded-full">
-              {props.isAuthor && (
+              {/* {props.isAuthor && (
                 <Edit setIsEditing={setIsEditing} />
-              )}
+              )} */}
               <Share />
               {props.isLoggedIn && <Save short_id={props.post.short_id} isSaved={props.isSaved} />}
             </div>

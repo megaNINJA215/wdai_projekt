@@ -1,6 +1,6 @@
 "use client";
 
-import { PERSONALIZED_POSTS_QUERY_KEY } from "@/utils/queryKeys";
+import { PERSONALIZED_QUERY_KEYS } from "@/utils/queryKeys";
 import { useQueryClient } from "@tanstack/react-query";
 import { useRouter } from "next/navigation";
 
@@ -11,9 +11,9 @@ export const useAuthRefresh = () => {
   return () => {
     localStorage.setItem("auth-change", crypto.randomUUID());
 
-    void queryClient.resetQueries({
-      queryKey: PERSONALIZED_POSTS_QUERY_KEY,
-    });
+    PERSONALIZED_QUERY_KEYS.map((queryKey) =>
+      queryClient.resetQueries({ queryKey })
+    )
 
     router.refresh();
   };

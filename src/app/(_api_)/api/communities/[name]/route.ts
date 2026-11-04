@@ -68,32 +68,6 @@ const communityPatchSchema = z.object({
 export async function PATCH(req: NextRequest, { params }: { params: Promise<{ name: string }> }) {
   const { name: communityName } = await params;
 
-  if (!await can("communities:edit", { communityName })) {
-    return NextResponse.json(
-      {
-        error: {
-          code: "UNAUTHORIZED",
-          message: "Brak uprawnień do edycji tej społeczności.",
-        },
-      },
-      { status: 401 },
-    );
-  }
-
-  const data = communityPatchSchema.safeParse(await req.json());
-
-  if (!data.success) {
-    return NextResponse.json(
-      {
-        error: {
-          code: "VALIDATION_ERROR",
-          message: data.error.issues.map((issue) => issue.message).join(", "),
-        },
-      },
-      { status: 400 },
-    );
-  }
-
   const community = await prisma.communities.findUnique({
     where: {
       name: communityName,
@@ -121,6 +95,20 @@ export async function PATCH(req: NextRequest, { params }: { params: Promise<{ na
         },
       },
       { status: 401 },
+    );
+  }
+
+  const data = communityPatchSchema.safeParse(await req.json());
+
+  if (!data.success) {
+    return NextResponse.json(
+      {
+        error: {
+          code: "VALIDATION_ERROR",
+          message: data.error.issues.map((issue) => issue.message).join(", "),
+        },
+      },
+      { status: 400 },
     );
   }
 

@@ -26,9 +26,6 @@ export default function MembershipButton(props: MembershipButtonProps) {
     },
     onSuccess: () => {
       router.refresh();
-    },
-    onError: (error) => {
-      console.error(error);
     }
   });
 

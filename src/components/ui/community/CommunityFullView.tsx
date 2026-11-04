@@ -1,7 +1,7 @@
 "use server";
 
 import prisma from '@/lib/prisma/prisma';
-import InfoText from '../InfoText';
+import LoadingInfo from '../LoadingInfo';
 import ProfilePicture from '../ProfilePicture';
 import { getCurrentUser } from '@/lib/auth/currentUser';
 import SeparatorButtons from './CommunityButtons';
@@ -26,7 +26,7 @@ export default async function CommunityFullView(props: CommunityFullViewProps) {
 
   if (!community) {
     return <div className="flex items-center justify-center w-full h-full">
-      <InfoText text={`Nie znaleziono społeczności o nazwie ${props.name}.`} />
+      <LoadingInfo text={`Nie znaleziono społeczności o nazwie ${props.name}.`} />
     </div>
   }
 

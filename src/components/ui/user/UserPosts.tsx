@@ -4,7 +4,7 @@ import { useInfiniteQuery } from "@tanstack/react-query";
 import { useEffect, useRef } from "react";
 import { Post as PostType } from "@/types/post";
 import PostPreview from "../post/PostPreview";
-import LoadingInfo from "../InfoText";
+import LoadingInfo from "../LoadingInfo";
 import LoadingError from "../LoadingError";
 
 export interface UserPostsProps {
@@ -52,6 +52,7 @@ export default function UserPosts(props: UserPostsProps) {
       }>;
     },
     getNextPageParam: (lastPage) => lastPage.nextCursor ?? undefined,
+    staleTime: Infinity,
   });
 
   const personalizedPosts = data?.pages.flatMap((page) => page.posts) ?? [];

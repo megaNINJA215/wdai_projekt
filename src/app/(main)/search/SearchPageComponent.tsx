@@ -11,7 +11,7 @@ import { Community as CommunityType } from "@/types/community";
 import CommunityPreview from "@/components/ui/community/CommunityPreview";
 import UserPreview from "@/components/ui/user/UserPreview";
 import SearchTabs from "@/components/ui/search/SearchTabs";
-import LoadingInfo from "@/components/ui/InfoText";
+import LoadingInfo from "@/components/ui/LoadingInfo";
 import LoadingError from "@/components/ui/LoadingError";
 
 
@@ -80,6 +80,7 @@ export default function SearchPageContent({ query }: Props) {
       }
     },
     getNextPageParam: (lastPage) => lastPage.nextCursor ?? undefined,
+    staleTime: Infinity,
   });
 
   const searchData: SearchItem[] =

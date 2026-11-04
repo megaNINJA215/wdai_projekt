@@ -1,52 +1,45 @@
-"use client";
+"use server";
 
-import { cn } from "@/utils/cn";
-import { useState } from "react";
+import { getCurrentUser } from "@/lib/auth/currentUser";
+import SidebarClient from "./components/SidebarClient";
+import DiscoverCommunities from "./components/DiscoverCommunities";
+import Link from "next/link";
+import ObservedCommunities from "./components/ObservedCommunities";
 
+export default async function Sidebar() {
+  const user = await getCurrentUser();
 
-export interface SidebarProps {
-
-}
-
-export default function Sidebar(props: SidebarProps) {
-  const [isOpen, setIsOpen] = useState(false);
+  if (!user) {
+    return (
+      <SidebarClient>
+        <DiscoverCommunities size="full" />
+      </SidebarClient>
+    );
+  }
 
   return (
-    <>
-      <button
-        type="button"
-        onClick={() => setIsOpen(!isOpen)}
-        className={cn(
-          "fixed left-0 top-6 z-50 flex h-10 w-10 transform items-center justify-center rounded-lg border-2 border-border bg-fg p-3 text-white transition-transform duration-300 lg:hidden",
-          isOpen
-            ? "translate-x-6"
-            : "translate-x-[calc(10vw-20px)] sm:translate-x-6"
-        )}
-        aria-label={isOpen ? "Zamknij menu" : "Otwórz menu"}
-        aria-expanded={isOpen}
-      >
-        {isOpen ? "✕" : "☰"}
-      </button>
+    <SidebarClient>
+      <div className="flex min-h-0 flex-1 flex-col">
 
-      {isOpen && (
-        <div
-          className="fixed inset-0 z-30 bg-black/40 lg:hidden"
-          onClick={() => setIsOpen(false)}
-        />
-      )}
+        <Link href="/saved" className="bg-fg w-4/5 mx-auto text-center p-2 rounded-md hover:bg-fg-hover shrink-0">Zapisane posty</Link>
+        <div className="h-4 shrink-0" />
+        <Link href="/create-post" className="bg-fg w-4/5 mx-auto text-center p-2 rounded-md hover:bg-fg-hover shrink-0">Utwórz nowy post</Link>
+        <div className="h-4 shrink-0" />
+        <Link href="/create-community" className="bg-fg w-4/5 mx-auto text-center p-2 rounded-md hover:bg-fg-hover shrink-0">Utwórz nową społeczność</Link>
 
-      <div
-        className={`
-          fixed left-0 top-0 z-40 h-[calc(100vh-1.5rem)] w-64 lg:w-[calc(20%-2rem)] lg:max-w-64 
-          transform transition-transform duration-300
-          ${isOpen ? "translate-x-0" : "-translate-x-[calc(100%+2rem)]"}
-          lg:translate-x-0 bg-fg-muted m-3 rounded-xl border border-border
-        `}
-      >
-        <div className="h-16 flex items-center justify-center">
-          Sidebar
-        </div>
+        <div className="h-1 bg-border w-4/5 mx-auto my-4 shrink-0 rounded-full" />
+
+        <ObservedCommunities />
+
+        <div className="
+          relative before:absolute before:bottom-full before:left-0
+          before:h-4 before:w-full
+          before:bg-linear-to-t before:from-fg-muted before:to-transparent
+          h-1 w-4/5 mx-auto mb-4 shrink-0 rounded-full bg-border
+        " />
+
+        <DiscoverCommunities size="compact" />
       </div>
-    </>
+    </SidebarClient>
   );
 }

@@ -2,7 +2,7 @@
 
 import PostPreview from "@/components/ui/post/PostPreview";
 import LoadingError from "@/components/ui/LoadingError";
-import LoadingInfo from "@/components/ui/InfoText";
+import LoadingInfo from "@/components/ui/LoadingInfo";
 import { useInfiniteQuery } from "@tanstack/react-query";
 import { useEffect, useRef } from "react";
 import { Post as PostType } from "@/types/post";
@@ -49,6 +49,7 @@ export default function Home() {
       }>;
     },
     getNextPageParam: (lastPage) => lastPage.nextCursor ?? undefined,
+    staleTime: Infinity,
   });
 
   const personalizedPosts = data?.pages.flatMap((page) => page.posts) ?? [];

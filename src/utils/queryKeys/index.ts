@@ -1,1 +1,3 @@
-export const PERSONALIZED_POSTS_QUERY_KEY = ["personalized-posts"];
+export const PERSONALIZED_QUERY_KEYS = [
+  ["personalized-posts"],
+] as const;

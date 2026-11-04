@@ -92,3 +92,80 @@ export async function POST(req: NextRequest) {
     { status: 201 },
   );
 }
+
+export async function GET(req: NextRequest) {
+  const PAGE_SIZE = 30;
+
+  if (!await can("communities:personalized")) {
+    return NextResponse.json(
+      {
+        error: {
+          code: "UNAUTHORIZED",
+          message: "Nie jesteś zalogowany.",
+        },
+      },
+      { status: 401 },
+    );
+  }
+
+  const user = await getCurrentUser();
+
+
+  if (!user) {
+    return NextResponse.json(
+      {
+        error: {
+          code: "INTERNAL_SERVER_ERROR",
+          message: "To nie powinno się zdarzyć.",
+        },
+      },
+      { status: 500 },
+    );
+  }
+
+  const searchParams = req.nextUrl.searchParams;
+  const cursorId = searchParams.get("cursorId");
+
+  const rows = await prisma.communities.findMany({
+    where: {
+      community_memberships: {
+        some: {
+          user_id: user.id,
+        },
+      },
+    },
+
+    orderBy: [
+      { created_at: "desc" },
+      { name: "desc" },
+    ],
+
+    cursor: cursorId ? { name: cursorId } : undefined,
+
+    skip: cursorId ? 1 : undefined,
+
+    take: PAGE_SIZE + 1,
+
+    select: {
+      name: true,
+    },
+  });
+
+  const hasMore = rows.length > PAGE_SIZE;
+
+  const pageRows = hasMore
+    ? rows.slice(0, PAGE_SIZE)
+    : rows;
+
+  const nextCursor = hasMore
+    ? pageRows[pageRows.length - 1]!.name
+    : null;
+
+  return NextResponse.json(
+    {
+      communities: pageRows.map((community) => community.name),
+      nextCursor,
+    },
+    { status: 200 },
+  );
+}

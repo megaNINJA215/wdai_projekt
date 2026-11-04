@@ -70,10 +70,10 @@ na chwilę obecną zrobione jest:
     - możliwość dołączenia/opuszczenia danej społeczności
     - (czysto informacyjnie, nie trzeba być jej członkiem aby móc ją wyświetlać, natomiast trzeba być aby móc publikować w niej posty oraz aby wyświetlały się ona na stronie głównej)
 - [x] możliwość wylogowania się
+- [x] strona do logowania się i/lub zakładania nowego
 
 na dniach będzie implementowane (kolejność losowa):
 
-- [ ] strona do logowania się i/lub zakładania nowego
 - [ ] możliwość stworzenia posta
 - [ ] możliwość stworzenia społeczności
 - [ ] możliwość przeglądania zapisanych postów

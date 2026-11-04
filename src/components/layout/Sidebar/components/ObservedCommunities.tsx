@@ -5,7 +5,7 @@ import Accordion from './Accordion';
 import CommunityButton from './CommunityButton';
 import { useInfiniteQuery } from '@tanstack/react-query';
 import LoadingInfo from '@/components/ui/LoadingInfo';
-import LoadingError from '@/components/ui/LoadingError';
+import { cn } from '@/utils/cn';
 
 export default function ObservedCommunities() {
 
@@ -16,8 +16,6 @@ export default function ObservedCommunities() {
     data,
     isPending,
     isError,
-    error,
-    refetch,
     fetchNextPage,
     hasNextPage,
     isFetching,
@@ -88,9 +86,12 @@ export default function ObservedCommunities() {
     isError,
   ]);
   return (
-    <div className="min-h-10">
+    <div className={cn("min-h-10", communities.length === 0 ? "shrink-0" : "")}>
       {
-        !isPending && !isError && communities.length === 0 ? <div>asd</div> :
+        !isPending && !isError && communities.length === 0 ?
+          <div className="w-9/10 h-10 mx-auto flex text-md items-center justify-center py-2 mb-4 text-text font-semibold text-center">
+            Gdy dołączysz do społeczności, pojawią się one tutaj!
+          </div> :
           <Accordion title="Obserwowane">
             <ul className="flex flex-col gap-2 pb-2 overflow-y-auto">
               {communities.map((community, index) => (

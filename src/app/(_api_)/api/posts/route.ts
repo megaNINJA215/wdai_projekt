@@ -91,13 +91,21 @@ export async function GET(req: NextRequest) {
   const searchParams = req.nextUrl.searchParams;
   const cursorId = searchParams.get("cursorId");
 
+  const memberships = user
+    ? await prisma.community_memberships.count({
+      where: {
+        user_id: user.id,
+      },
+    })
+    : 0;
+
   const rows = await prisma.posts.findMany({
     where: {
-      ...(user && {
+      ...(memberships > 0 && {
         communities: {
           community_memberships: {
             some: {
-              user_id: user.id,
+              user_id: user!.id,
             },
           },
         },

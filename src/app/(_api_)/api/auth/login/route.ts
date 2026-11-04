@@ -58,7 +58,7 @@ export async function POST(req: NextRequest) {
       {
         error: {
           code: "USER_NOT_FOUND",
-          message: "Użytkownik nie istnieje.",
+          message: "Użytkownik o podanej nazwie nie istnieje.",
         },
       },
       { status: 404 },

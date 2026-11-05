@@ -17,7 +17,7 @@ export default function PostHeader(props: PostHeaderProps) {
 
         {props.communityName ? <>
 
-          <Link href={`c/${props.communityName}`} className="z-5">
+          <Link href={`/c/${props.communityName}`} className="z-5">
             <ProfilePicture type="community" name={props.communityName} size={48} />
           </Link>
           <div className="flex flex-col whitespace-nowrap">
@@ -31,7 +31,7 @@ export default function PostHeader(props: PostHeaderProps) {
 
         </> : <>
 
-          <Link href={`u/${props.authorUsername}`} className="z-5">
+          <Link href={`/u/${props.authorUsername}`} className="z-5">
             <ProfilePicture type="user" name={props.authorUsername} size={48} />
           </Link>
           <div className="flex items-center whitespace-nowrap ">

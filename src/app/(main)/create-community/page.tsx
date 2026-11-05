@@ -72,7 +72,7 @@ export default function createCommunityPage() {
         </div>
         <TextArea placeholder="Opis społeczności" name="communityDescription" value={communityDescription} onChange={setCommunityDescription} validate={validateCommunityDescription} textSize="small" style="mt-8" minRows={1} />
         <Submit text="Utwórz społeczność" disabled={isPending} style="max-w-48 self-end" />
-        <div className={cn("absolute -bottom-20 w-full left-0 text-center text-lg font-semibold transition-colors duration-150", error ? "text-danger" : "text-transparent")}>{error?.message}</div>
+        <div className={cn("absolute md:-bottom-20 -bottom-32 w-full left-0 text-center text-lg font-semibold transition-colors duration-150", error ? "text-danger" : "text-transparent")}>{error?.message}</div>
       </form>
     </div>
   );

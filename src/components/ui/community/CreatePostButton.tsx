@@ -6,7 +6,7 @@ export interface CreatePostButtonProps {
 
 export default function CreatePostButton(props: CreatePostButtonProps) {
   return (
-    <Link href={`/post/create-post?c=${props.community_name}`} className="bg-primary text-text px-2 sm:px-4 py-1 sm:py-2 rounded-full hover:cursor-pointer hover:bg-primary-hover h-8 sm:h-10">
+    <Link href={`/create-post?c=${props.community_name}`} className="bg-primary text-text px-2 sm:px-4 py-1 sm:py-2 rounded-full hover:cursor-pointer hover:bg-primary-hover h-8 sm:h-10 z-5">
       Utwórz post
     </Link>
   );

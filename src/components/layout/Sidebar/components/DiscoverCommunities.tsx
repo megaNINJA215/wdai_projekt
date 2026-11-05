@@ -13,7 +13,7 @@ export default function DiscoverCommunities(props: DiscoverCommunitiesProps) {
   const { data } = useQuery({
     queryKey: ["discover-communities"],
     queryFn: async () => {
-      const response = await fetch(`/api/communities/discover${props.size === "full" ? `?limit=30` : ""}`, { cache: "no-store" });
+      const response = await fetch("/api/communities/discover?limit=30}", { cache: "no-store" });
       if (!response.ok) {
         throw new Error(
           `Nie udało się pobrać społeczności (${response.status}).`
@@ -50,7 +50,7 @@ export default function DiscoverCommunities(props: DiscoverCommunitiesProps) {
       {props.size === "compact" && <>
         <Accordion title="Odkrywaj społeczności!">
           <div className="w-full mx-auto flex flex-col gap-2 pb-2 overflow-y-hidden">
-            {communities.map((community) => (
+            {communities.slice(0, 5).map((community) => (
               <CommunityButton key={community} name={community} />
             ))}
           </div>

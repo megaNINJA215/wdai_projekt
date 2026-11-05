@@ -55,13 +55,13 @@ export default function Input(props: InputProps) {
   return (
     <div className={cn("relative w-full mb-4 text-2xl", props.style)}>
       <input
-        className={cn("peer w-full h-10 bg-bg-secondary text-fg-primary rounded px-4") + " focus:outline-none ring-2 ring-primary placeholder-transparent"}
+        className={cn("peer w-full h-10 bg-bg-secondary text-fg-primary rounded-lg px-4") + " focus:outline-none border-2 border-primary placeholder-transparent"}
         placeholder={props.placeholder}
         type={props.type}
         name={props.name}
         value={props.value}
         onChange={(e) => props.onChange(e.target.value)}
-        required
+        required={!!props.required}
       />
 
       <label

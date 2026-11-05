@@ -51,13 +51,14 @@ export async function POST(req: NextRequest) {
     );
   }
 
+  const short_id = shortID();
+
   await prisma.posts.create({
     data: {
       title: data.data.title,
       content: data.data.content,
       author_id: currentUser.id,
-      community_id: null,
-      short_id: shortID(),
+      short_id: short_id,
     },
   });
 
@@ -65,6 +66,7 @@ export async function POST(req: NextRequest) {
     {
       data: {
         message: "Post został utworzony pomyślnie.",
+        short_id: short_id,
       },
     },
     { status: 201 },

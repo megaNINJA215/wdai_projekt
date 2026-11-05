@@ -64,7 +64,7 @@ export default async function CommunityFullView(props: CommunityFullViewProps) {
           </div>
           <div className="flex flex-col justify-center ml-4 gap-2">
             <div className="text-primary text-lg sm:text-3xl font-bold wrap-anywhere sm:text-nowrap sm:text-[clamp(18px,2.5vw,30px)]">
-              u/{community.name}
+              c/<span className="text-text">{community.name}</span>
             </div>
             <div className="text-text-secondary text-sm sm:text-md">
               Utworzono: {community.created_at.toLocaleDateString()}

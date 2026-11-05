@@ -45,7 +45,7 @@ model posts {
   id           String        @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
   created_at   DateTime      @default(now()) @db.Timestamptz(6)
   author_id    String        @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  community_id String?       @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  community_id String?       @db.Uuid
   title        String
   content      String
   edited_at    DateTime?     @db.Timestamptz(6)

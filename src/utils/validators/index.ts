@@ -61,3 +61,17 @@ export const validateCommunityDescription = (value: string): ValidationState => 
   }
   return "valid";
 }
+
+export const validatePostTitle = (value: string): ValidationState => {
+  if (value.length < 3 || value.length > 100) {
+    return "invalid";
+  }
+  return "valid";
+}
+
+export const validatePostContent = (value: string): ValidationState => {
+  if (value.length < 1 || value.length > 8000) {
+    return "invalid";
+  }
+  return "valid";
+}

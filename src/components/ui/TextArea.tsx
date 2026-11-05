@@ -91,14 +91,14 @@ export default function TextArea(props: TextAreaProps) {
       <textarea
         ref={textareaRef}
         className={cn(
-          "peer w-full bg-bg-secondary text-fg-primary rounded px-4 py-2 resize-none ring-2 ring-primary focus:outline-none placeholder-transparent",
+          "peer w-full bg-bg-secondary text-fg-primary rounded-lg px-4 py-2 resize-none border-2 border-primary focus:outline-none placeholder-transparent",
           props.textSize === "small" ? "text-md leading-6" : "text-2xl leading-8"
         )}
         placeholder={props.placeholder}
         name={props.name}
         value={props.value}
         onChange={(e) => { props.onChange(e.target.value); adjustHeight(); }}
-        required={props.required}
+        required={!!props.required}
         rows={props.minRows ?? 2}
       />
 

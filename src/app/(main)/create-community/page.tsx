@@ -62,7 +62,7 @@ export default function createCommunityPage() {
   };
 
   return (
-    <div className="w-full max-w-180 mx-auto mt-24 sm:mt-32 md:mt-40 lg:mt-48">
+    <div className="w-full max-w-180 mx-auto mt-24 sm:mt-32 md:mt-40 lg:mt-48 bg-bg-hover h-fit p-8 border-border border rounded-2xl">
       <form className="flex flex-col gap-4 relative" onSubmit={handleSubmit}>
         <div className="flex items-center gap-4 self-center">
           <div className="size-16 sm:size-24 md:size-32 shrink-0">

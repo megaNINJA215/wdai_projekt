@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import Accordion from './Accordion';
 import CommunityButton from './CommunityButton';
 import { useInfiniteQuery } from '@tanstack/react-query';
@@ -51,6 +51,7 @@ export default function ObservedCommunities() {
   });
 
   const communities = data?.pages.flatMap((page) => page.communities) ?? [];
+  const communitiesLength = communities.length;
 
   useEffect(() => {
     const sentinel = sentinelRef.current;
@@ -85,10 +86,11 @@ export default function ObservedCommunities() {
     isFetching,
     isError,
   ]);
+
   return (
-    <div className={cn("min-h-10", communities.length === 0 ? "shrink-0" : "")}>
+    <div className={cn("min-h-10", communitiesLength === 0 ? "shrink-0" : "")}>
       {
-        !isPending && !isError && communities.length === 0 ?
+        !isPending && !isError && communitiesLength === 0 ?
           <div className="w-9/10 h-10 mx-auto flex text-md items-center justify-center py-2 mb-4 text-text font-semibold text-center">
             Gdy dołączysz do społeczności, pojawią się one tutaj!
           </div> :
@@ -99,7 +101,7 @@ export default function ObservedCommunities() {
                   key={community}
                   className="w-full"
                   ref={
-                    index === communities.length - 5
+                    index === communitiesLength - 5
                       ? sentinelRef
                       : null
                   }

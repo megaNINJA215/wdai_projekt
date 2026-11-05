@@ -45,12 +45,12 @@ export default function PostHeader(props: PostHeaderProps) {
       </div>
       <div className="flex-col text-end text-text-secondary flex line-clamp-1">
 
-        <span className="">
+        <span className="text-xs">
           {getRelativeTime(props.created_at)}
         </span>
-        <span className={cn("text-xs", props.edited_at ? "visible" : "invisible")}>
+        {/* <span className={cn("text-xs", props.edited_at ? "visible" : "invisible")}>
           Edited: {props.edited_at ? getRelativeTime(props.edited_at) : ""}
-        </span>
+        </span> */}
 
       </div>
     </div>

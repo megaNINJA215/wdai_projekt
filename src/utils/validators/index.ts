@@ -75,3 +75,10 @@ export const validatePostContent = (value: string): ValidationState => {
   }
   return "valid";
 }
+
+export const validateCommentContent = (value: string): ValidationState => {
+  if (value.length < 1 || value.length > 2000) {
+    return "invalid";
+  }
+  return "valid";
+}

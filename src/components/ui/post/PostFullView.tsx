@@ -6,6 +6,7 @@ import Share from './icons/share';
 import Save from './icons/save';
 import { useState } from 'react';
 import LoadingInfo from '../LoadingInfo';
+import CommentsSection from './comments/commentsSection';
 // import Edit from './icons/edit';
 
 export interface PostFullViewProps {
@@ -29,7 +30,7 @@ export default function PostFullView(props: PostFullViewProps) {
   return (
     <div className="flex flex-col items-center w-full mb-20 h-full">
       {/* <div className="border-3 border-border rounded-4xl bg-fg w-full max-w-200"> */}
-      <div className=" rounded-4xl w-full max-w-200 relative">
+      <div className=" rounded-4xl w-full max-w-200">
         <PostHeader
           authorUsername={props.authorUsername}
           created_at={props.post.created_at}
@@ -54,17 +55,24 @@ export default function PostFullView(props: PostFullViewProps) {
             </svg>
           </button>
         </>
-          : <>
-            <PostContent title={props.post.title} content={props.post.content.trim()} />
+          : <div>
+            <div className="relative">
+              <PostContent title={props.post.title} content={props.post.content.trim()} />
 
-            <div className="bg-bg-hover w-fit h-8 absolute -bottom-10 right-8 flex flex-row items-center justify-end text-primary text-center text-md font-semibold rounded-full">
-              {/* {props.isAuthor && (
+              <div className="bg-bg-hover w-fit h-8 absolute -bottom-16 right-8 flex flex-row items-center justify-end text-primary text-center text-md font-semibold rounded-full">
+                {/* {props.isAuthor && (
                 <Edit setIsEditing={setIsEditing} />
               )} */}
-              <Share />
-              {props.isLoggedIn && <Save short_id={props.post.short_id} isSaved={props.isSaved} />}
+                <Share />
+                {props.isLoggedIn && <Save short_id={props.post.short_id} isSaved={props.isSaved} />}
+              </div>
+
             </div>
-          </>
+            <CommentsSection
+              shortPostId={props.post.short_id}
+              isLoggedIn={props.isLoggedIn}
+            />
+          </div>
         }
       </div>
     </div>

@@ -15,6 +15,7 @@ model users {
   password_hash         String
   salt                  String
   active_sessions       active_sessions[]
+  comments              comments[]
   communities           communities[]
   community_memberships community_memberships[]
   posts                 posts[]
@@ -50,6 +51,7 @@ model posts {
   content      String
   edited_at    DateTime?     @db.Timestamptz(6)
   short_id     String        @unique
+  comments     comments[]
   users        users         @relation(fields: [author_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
   communities  communities?  @relation(fields: [community_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
   saved_posts  saved_posts[]
@@ -75,4 +77,20 @@ model saved_posts {
   users    users    @relation(fields: [user_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
 
   @@id([user_id, post_id])
+}
+
+/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
+model comments {
+  id                String     @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  created_at        DateTime   @default(now()) @db.Timestamptz(6)
+  author_id         String     @db.Uuid
+  post_id           String     @db.Uuid
+  parent_comment_id String?    @db.Uuid
+  content           String
+  users             users      @relation(fields: [author_id], references: [id], onUpdate: NoAction)
+  comments          comments?  @relation("commentsTocomments", fields: [parent_comment_id, post_id], references: [id, post_id], onDelete: Cascade, onUpdate: NoAction, map: "comments_parent_same_post_fkey")
+  other_comments    comments[] @relation("commentsTocomments")
+  posts             posts      @relation(fields: [post_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
+
+  @@unique([id, post_id], map: "comments_id_post_id_unique")
 }

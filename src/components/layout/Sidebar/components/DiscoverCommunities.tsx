@@ -13,7 +13,7 @@ export default function DiscoverCommunities(props: DiscoverCommunitiesProps) {
   const { data } = useQuery({
     queryKey: ["discover-communities"],
     queryFn: async () => {
-      const response = await fetch("/api/communities/discover?limit=30}", { cache: "no-store" });
+      const response = await fetch("/api/communities/discover?limit=30", { cache: "no-store" });
       if (!response.ok) {
         throw new Error(
           `Nie udało się pobrać społeczności (${response.status}).`
